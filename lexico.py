@@ -9,7 +9,7 @@ reserved = {
 "String":"STRING",
 "int":"INT",
 "bool":"BOOL",
-#Aport Pedro Bajaña
+#Aport Pedro Bajana
 'True':'TRUE',
 'print':'PRINT',
 'False':'FALSE',
