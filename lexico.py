@@ -18,6 +18,7 @@ reserved = {
 'False':'FALSE',
 'bool':'BOOL',
 'void':'VOID',
+'stdin':'STDIN'
 #Fin Aporte Pedro Bajana
 }
 
@@ -27,13 +28,16 @@ reserved = {
 tokens = [
 #Inicio Aporte Aaron Franco
 'VARIABLE',
-'LPARENT',
-'RPARENT'
+
 #Fin Aporte Aaron Franco
 #Inicio Aporte Pedro Bajana
-,'LLAVEL'
-,'LLAVER'
-,'IGUAL'
+'LPARENT',
+'RPARENT',
+'LLAVEL',
+'LLAVER',
+'IGUAL',
+'DIVISION',
+'MAS'
 #Fin Aporte Pedro Bajana
 ]+list(reserved.values())
 #Inicip Aporte Aaron Franco
@@ -46,6 +50,8 @@ t_RPARENT=r'\)'
 t_LLAVEL=r'\{'
 t_LLAVER=r'\}'
 t_IGUAL=r'='
+t_MAS=r'\+'
+t_DIVISION = r'/'
 #Fin Aporte Pedro Bajana
 
 #Inicio Aporte Aaron Franco
