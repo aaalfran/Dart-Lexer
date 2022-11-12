@@ -28,7 +28,12 @@ reserved = {
 tokens = [
 #Inicio Aporte Aaron Franco
 'VARIABLE',
-
+'RESTA',
+'MULTIPL',
+'COMILLAS_DOBL',
+'COMILLAS_SIMPL',
+'CADENA',
+'INTEGER',
 #Fin Aporte Aaron Franco
 #Inicio Aporte Pedro Bajana
 'LPARENT',
@@ -37,12 +42,16 @@ tokens = [
 'LLAVER',
 'IGUAL',
 'DIVISION',
-'MAS'
+'MAS',
 #Fin Aporte Pedro Bajana
 ]+list(reserved.values())
-#Inicip Aporte Aaron Franco
+#Inicio Aporte Aaron Franco
 t_ignore = ' \t'
-
+t_RESTA =  r'-'
+t_MULTIPL = r'\*'
+t_COMILLAS_DOBL = r'"'
+t_COMILLAS_SIMPL = r"'"
+t_INTEGER = r'0|\-?[1-9][0-9]*'
 #Fin aporte Aaron Franco
 #Inicio Aporte Pedro Bajana
 t_LPARENT=r'\('
@@ -64,6 +73,14 @@ def t_VARIABLE(t):
 def t_error(t):
     print("No se ha reconocido '%s'"%t.value[0])
     t.lexer.skip(1)
+# Definiendo token de comentarios
+def t_COMMENT(t):
+    r'\/\/.*'
+    pass
+
+def t_CADENA(t):
+    r'\" [a-zA-Z]* \"'
+    return t
 #Fin Aporte Aaron Franco
 
 
