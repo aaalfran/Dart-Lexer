@@ -43,6 +43,7 @@ tokens = [
 'IGUAL',
 'DIVISION',
 'MAS',
+'PUNTOCOMA',
 #Fin Aporte Pedro Bajana
 ]+list(reserved.values())
 #Inicio Aporte Aaron Franco
@@ -61,6 +62,7 @@ t_LLAVER=r'\}'
 t_IGUAL=r'='
 t_MAS=r'\+'
 t_DIVISION = r'/'
+t_PUNTOCOMA=r';'
 #Fin Aporte Pedro Bajana
 
 #Inicio Aporte Aaron Franco
@@ -82,6 +84,13 @@ def t_CADENA(t):
     r'\" [a-zA-Z]* \"'
     return t
 #Fin Aporte Aaron Franco
+
+#inicio Aporte Pedro bajaña
+
+#Definiendo token de linea
+def t_NEWLINE(t):
+    r'\n+'
+    t.lexer.lineno +=len(t.value)
 
 
 
