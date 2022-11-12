@@ -10,6 +10,7 @@ reserved = {
 "if":"IF",
 "else":"ELSE",
 "for":"FOR",
+"main":"MAIN",
 #Fin Aporte Aaron Franco
 
 #Aport Pedro Bajana
@@ -34,6 +35,7 @@ tokens = [
 'COMILLAS_SIMPL',
 'CADENA',
 'INTEGER',
+'INCREMENTADOR',
 #Fin Aporte Aaron Franco
 #Inicio Aporte Pedro Bajana
 'LPARENT',
@@ -53,6 +55,7 @@ t_MULTIPL = r'\*'
 t_COMILLAS_DOBL = r'"'
 t_COMILLAS_SIMPL = r"'"
 t_INTEGER = r'0|\-?[1-9][0-9]*'
+t_INCREMENTADOR = r'\++'
 #Fin aporte Aaron Franco
 #Inicio Aporte Pedro Bajana
 t_LPARENT=r'\('

@@ -5,6 +5,7 @@ void main() {
 
   var c = a+b
   print(c);
+  c++;
 }
 
 //Algoritmo de pedro
