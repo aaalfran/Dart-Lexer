@@ -9,11 +9,17 @@ reserved = {
 "String":"STRING",
 "int":"INT",
 "bool":"BOOL",
+#Aport Pedro Bajaña
+'True':'TRUE',
+'print':'PRINT',
+'False':'FALSE',
+'bool':'BOOL',
+'void':'VOID',
 # Estructuras de Control
 "if":"IF",
 "else":"ELSE",
-"while": "WHILE",
 "for":"FOR",
+
 
 }
 
@@ -21,15 +27,19 @@ reserved = {
 
 tokens = [
 
-"VARIABLE",
+"VARIABLE",'LPARENT','RPARENT','LLAVEL','LLAVER','IGUAL'
 
 
 
 
 
 ]+list(reserved.values())
-
+t_LPARENT=r'\('
+t_RPARENT=r'\)'
+t_LLAVEL=r'\{'
+t_LLAVER=r'\}'
 t_ignore = ' \t'
+t_IGUAL=r'='
 
 # Definiendo token de palabras reservadas
 def t_VARIABLE(t):
