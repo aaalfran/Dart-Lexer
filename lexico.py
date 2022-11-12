@@ -95,7 +95,18 @@ def analizador(data):
     if not tok:
       break
     print(tok)
+
+#Descomentar para usar analizador en tiempo real por consola
+'''   
 while(True):
     cadena = input(">>: ")
     analizador(cadena)
+'''
+# Lee el archivo input.txt y el lexer obtendra los tokens respectivos
+archivo = open("input.txt")
+for linea in archivo:
+  print(">>" + linea)
+  analizador(linea)
+  if len(linea) == 0:
+    break
 #Fin Aporte Aaron Franco
