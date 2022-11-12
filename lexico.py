@@ -1,46 +1,54 @@
 import ply.lex as lex
 
-# Aporte Aaron Franco
-
 # Inicio de palabras reservadas
+
 reserved = {
-# Tipado
+# Inicio Aporte Aaron Franco
 "var":"VAR",
 "String":"STRING",
 "int":"INT",
-"bool":"BOOL",
+"if":"IF",
+"else":"ELSE",
+"for":"FOR",
+#Fin Aporte Aaron Franco
+
 #Aport Pedro Bajana
 'True':'TRUE',
 'print':'PRINT',
 'False':'FALSE',
 'bool':'BOOL',
 'void':'VOID',
-# Estructuras de Control
-"if":"IF",
-"else":"ELSE",
-"for":"FOR",
-
-
+#Fin Aporte Pedro Bajana
 }
 
+
+
 # Definicion de Tokens
-
 tokens = [
-
-"VARIABLE",'LPARENT','RPARENT','LLAVEL','LLAVER','IGUAL'
-
-
-
-
-
+#Inicio Aporte Aaron Franco
+'VARIABLE',
+'LPARENT',
+'RPARENT'
+#Fin Aporte Aaron Franco
+#Inicio Aporte Pedro Bajana
+,'LLAVEL'
+,'LLAVER'
+,'IGUAL'
+#Fin Aporte Pedro Bajana
 ]+list(reserved.values())
+#Inicip Aporte Aaron Franco
+t_ignore = ' \t'
+
+#Fin aporte Aaron Franco
+#Inicio Aporte Pedro Bajana
 t_LPARENT=r'\('
 t_RPARENT=r'\)'
 t_LLAVEL=r'\{'
 t_LLAVER=r'\}'
-t_ignore = ' \t'
 t_IGUAL=r'='
+#Fin Aporte Pedro Bajana
 
+#Inicio Aporte Aaron Franco
 # Definiendo token de palabras reservadas
 def t_VARIABLE(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
@@ -50,8 +58,11 @@ def t_VARIABLE(t):
 def t_error(t):
     print("No se ha reconocido '%s'"%t.value[0])
     t.lexer.skip(1)
+#Fin Aporte Aaron Franco
 
 
+
+#Inicio Aporte Aaron Franco
 #Creando Lexer
 lexer = lex.lex()
 def analizador(data):
@@ -64,3 +75,4 @@ def analizador(data):
 while(True):
     cadena = input(">>: ")
     analizador(cadena)
+#Fin Aporte Aaron Franco
