@@ -13,16 +13,26 @@ reserved = {
 "main":"MAIN",
 #Fin Aporte Aaron Franco
 
-#Aport Pedro Bajana
+#Aporte Pedro Bajana
 'True':'TRUE',
 'print':'PRINT',
 'False':'FALSE',
 'bool':'BOOL',
 'void':'VOID',
-'stdin':'STDIN'
+'stdin':'STDIN',
 #Fin Aporte Pedro Bajana
-}
 
+#Aporte Fabrizzio Ontaneda
+'return':'RETURN',
+'list':'LIST',
+'to_int':'TOINT',
+'to_double':'TODOUBLE',
+'float':'DOUBLE',
+'write':'WRITE',
+'readLineSync':'READLINESYNC',
+'parse':'PARSE'
+#Fin Aporte Fabrizzio Ontaneda
+}
 
 
 # Definicion de Tokens
@@ -47,6 +57,19 @@ tokens = [
 'MAS',
 'PUNTOCOMA',
 #Fin Aporte Pedro Bajana
+#Inicio Aporte Fabrizzio Ontaneda
+'NEGACION',
+'AND',
+'OR',
+'ES_IGUAL',
+'NO_IGUAL',
+'MENOR_QUE',
+'MAYOR_QUE',
+'MENOR_O_IGUAL',
+'MAYOR_O_IGUAL',
+'SALTO_LINEA',
+'TABULACION',
+#Fin APorte Fabrizzio Ontaneda
 ]+list(reserved.values())
 #Inicio Aporte Aaron Franco
 t_ignore = ' \t'
@@ -57,6 +80,7 @@ t_COMILLAS_SIMPL = r"'"
 t_INTEGER = r'0|\-?[1-9][0-9]*'
 t_INCREMENTADOR = r'\++'
 #Fin aporte Aaron Franco
+
 #Inicio Aporte Pedro Bajana
 t_LPARENT=r'\('
 t_RPARENT=r'\)'
@@ -67,6 +91,19 @@ t_MAS=r'\+'
 t_DIVISION = r'/'
 t_PUNTOCOMA=r';'
 #Fin Aporte Pedro Bajana
+
+#Inicio Aporte Fabrizzio Ontaneda
+t_ES_IGUAL=r'=='
+t_NO_IGUAL=r'!='
+t_MENOR_QUE=r'<'
+t_MAYOR_QUE=r'>'
+t_MENOR_O_IGUAL=r'<='
+t_MAYOR_O_IGUAL=r'>='
+t_AND = r'&&'
+t_OR = r'\|\|'
+t_SALTO_LINEA=r'\/n'
+t_NEGACION=r'!'
+#Fin Aporte Fabrizzio Ontaneda
 
 #Inicio Aporte Aaron Franco
 # Definiendo token de palabras reservadas
@@ -115,7 +152,7 @@ while(True):
     analizador(cadena)
 '''
 # Lee el archivo input.txt y el lexer obtendra los tokens respectivos
-archivo = open("input.txt")
+archivo = open("input.txt","r")
 for linea in archivo:
   print(">>" + linea)
   analizador(linea)
