@@ -21,6 +21,7 @@ reserved = {
 'bool':'BOOL',
 'void':'VOID',
 'stdin':'STDIN',
+
 #Fin Aporte Pedro Bajana
 
 #Aporte Fabrizzio Ontaneda
@@ -59,6 +60,7 @@ tokens = [
 'DIVISION',
 'MAS',
 'PUNTOCOMA',
+'PUNTO',
 #Fin Aporte Pedro Bajana
 #Inicio Aporte Fabrizzio Ontaneda
 'NEGACION',
@@ -96,6 +98,7 @@ t_IGUAL=r'='
 t_MAS=r'\+'
 t_DIVISION = r'/'
 t_PUNTOCOMA=r';'
+t_PUNTO=r'\.'
 #Fin Aporte Pedro Bajana
 
 #Inicio Aporte Fabrizzio Ontaneda
