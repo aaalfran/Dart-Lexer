@@ -38,6 +38,7 @@ reserved = {
 # Definicion de Tokens
 tokens = [
 #Inicio Aporte Aaron Franco
+'FUNCION',
 'VARIABLE',
 'RESTA',
 'MULTIPL',
@@ -106,6 +107,11 @@ t_NEGACION=r'!'
 #Fin Aporte Fabrizzio Ontaneda
 
 #Inicio Aporte Aaron Franco
+#Definiendo token de funciones
+def t_FUNCION(t):
+    r'^[a-z][a-zA-Z0-9-]*\(.*\)'
+    t.type = reserved.get(t.value, 'FUNCION')
+    return t
 # Definiendo token de palabras reservadas
 def t_VARIABLE(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
