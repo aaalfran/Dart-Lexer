@@ -24,13 +24,16 @@ reserved = {
 
 #Aporte Fabrizzio Ontaneda
 'return':'RETURN',
-'list':'LIST',
+'List':'LIST',
 'to_int':'TOINT',
 'to_double':'TODOUBLE',
-'float':'DOUBLE',
+'double':'DOUBLE',
 'write':'WRITE',
 'readLineSync':'READLINESYNC',
-'parse':'PARSE'
+'parse':'PARSE',
+'final':'FINAL',
+'const':'CONST',
+'in':'IN'
 #Fin Aporte Fabrizzio Ontaneda
 }
 
@@ -69,6 +72,9 @@ tokens = [
 'MAYOR_O_IGUAL',
 'SALTO_LINEA',
 'TABULACION',
+'CORCHETE_IZQ',
+'CORCHETE_DER',
+'COMA',
 #Fin APorte Fabrizzio Ontaneda
 ]+list(reserved.values())
 #Inicio Aporte Aaron Franco
@@ -101,8 +107,12 @@ t_MENOR_O_IGUAL=r'<='
 t_MAYOR_O_IGUAL=r'>='
 t_AND = r'&&'
 t_OR = r'\|\|'
-t_SALTO_LINEA=r'\/n'
+t_SALTO_LINEA=r'/n'
 t_NEGACION=r'!'
+t_TABULACION=r'/t'
+t_CORCHETE_IZQ=r'\['
+t_CORCHETE_DER=r'\]'
+t_COMA=r','
 #Fin Aporte Fabrizzio Ontaneda
 
 #Inicio Aporte Aaron Franco
@@ -117,7 +127,7 @@ def t_error(t):
     t.lexer.skip(1)
 # Definiendo token de comentarios
 def t_COMMENT(t):
-    r'\/\/.*'
+    r'(\/\/.*)'
     pass
 
 def t_CADENA(t):
