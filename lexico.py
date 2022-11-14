@@ -26,8 +26,9 @@ reserved = {
 #Aporte Fabrizzio Ontaneda
 'return':'RETURN',
 'List':'LIST',
-'to_int':'TOINT',
-'to_double':'TODOUBLE',
+'toString':'TOSTRING',
+'toInt':'TOINT',
+'toDouble':'TODOUBLE',
 'write':'WRITE',
 'readLineSync':'READLINESYNC',
 'parse':'PARSE',
