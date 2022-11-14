@@ -11,12 +11,13 @@ reserved = {
 "else":"ELSE",
 "for":"FOR",
 "main":"MAIN",
+"double":'DOUBLE',
 #Fin Aporte Aaron Franco
 
 #Aporte Pedro Bajana
-'True':'TRUE',
+'true':'TRUE',
 'print':'PRINT',
-'False':'FALSE',
+'false':'FALSE',
 'bool':'BOOL',
 'void':'VOID',
 'stdin':'STDIN',
@@ -27,7 +28,6 @@ reserved = {
 'list':'LIST',
 'to_int':'TOINT',
 'to_double':'TODOUBLE',
-'float':'DOUBLE',
 'write':'WRITE',
 'readLineSync':'READLINESYNC',
 'parse':'PARSE'
