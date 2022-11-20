@@ -7,11 +7,14 @@ def p_sentencias(p):
                   | comparacion
                   | operacion
                   | impresion
-                  | funcion'''
+                  | funcion
+                  | estructuras'''
 #Fin Aporte Aaron Franco
 #Inicio Aporte Pedro Bajana
 def p_asignacion(p):
-  'asignacion : declaradores VARIABLE IGUAL tipodato PUNTOCOMA'
+  '''asignacion : declaradores VARIABLE IGUAL tipodato PUNTOCOMA
+                  | declaradores VARIABLE IGUAL negativo PUNTOCOMA'''
+
 def p_comparacion(p):
   'comparacion : VARIABLE comparadores VARIABLE PUNTOCOMA'
 #Fin Aporte Pedro Bajana
@@ -22,16 +25,29 @@ def p_impresion(p):
   'impresion : PRINT LPARENT tipodato RPARENT PUNTOCOMA'
 #Inicio Aporte Pedro Bajana
 def p_funcion(p):
-    '''funcion : VOID VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER
+    '''funcion : VOID VARIABLE LPARENT declaracionfunciones VARIABLE RPARENT LLAVEL LLAVER
                | VOID VARIABLE LPARENT  VARIABLE RPARENT LLAVEL LLAVER
                | VOID VARIABLE LPARENT RPARENT LLAVEL LLAVER
-               | tipodatofunciones VARIABLE LPARENT  RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
-               | tipodatofunciones VARIABLE LPARENT  RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER'''
+               | declaracionfunciones VARIABLE LPARENT  RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
+               | declaracionfunciones VARIABLE LPARENT  RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER'''
+
+
+def p_estructuras(p):
+  '''estructuras : declaradoresestruras VARIABLE IGUAL CORCHETE_IZQ tipodatoestructura CORCHETE_DER PUNTOCOMA
+             | declaradoresestruras VARIABLE IGUAL LLAVEL tipodato DOSPUNTOS tipodato LLAVER PUNTOCOMA
+             | declaradoresestruras VARIABLE IGUAL MENOR_QUE declaracionfunciones MAYOR_QUE LLAVEL tipodato LLAVER PUNTOCOMA'''
 def p_tipodato_funciones(p):
-  '''tipodatofunciones : INT
+  '''declaracionfunciones : INT
                        | DOUBLE
                        | STRING
                        | BOOL'''
+
+
+
+def p_tipodatoestructura(p):
+  '''tipodatoestructura : INTEGER
+              | CADENA
+              | DOUBLE'''
 #Fin Aporte Pedro Bajana
 #Inicio Aporte Aaron Franco
 def p_datonumerico(p):
@@ -58,13 +74,24 @@ def p_declaradores(p):
                   | BOOL
                   | FINAL
                   | STRING'''
+def p_declaracionestructura(p):
+  '''declaradoresestruras : CONST
+                           | VAR
+                           | FINAL'''
+
+def p_negativo(p):
+    '''
+    negativo : RESTA INTEGER
+              | RESTA FLOAT
+    '''
 #Fin Aporte Pedro Bajana
 #Inicio Aporte Aaron Franco
 def p_tipodato(p):
   '''tipodato : INTEGER
               | CADENA
-              | DOUBLE
-              | VARIABLE'''
+              | FLOAT
+              | VARIABLE
+            '''
 #Fin Aporte Aaron Franco
 def p_error(p):
   if p:

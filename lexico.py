@@ -49,6 +49,7 @@ tokens = [
 'MULTIPL',
 'CADENA',
 'INTEGER',
+'FLOAT',
 'INCREMENTADOR',
 #Fin Aporte Aaron Franco
 #Inicio Aporte Pedro Bajana
@@ -61,6 +62,7 @@ tokens = [
 'MAS',
 'PUNTOCOMA',
 'PUNTO',
+'DOSPUNTOS',
 #Fin Aporte Pedro Bajana
 #Inicio Aporte Fabrizzio Ontaneda
 'NEGACION',
@@ -77,13 +79,13 @@ tokens = [
 'CORCHETE_IZQ',
 'CORCHETE_DER',
 'COMA',
+
 #Fin APorte Fabrizzio Ontaneda
 ]+list(reserved.values())
 #Inicio Aporte Aaron Franco
 t_ignore = ' \t'
-t_RESTA =  r'-'
+t_RESTA =  r'\-'
 t_MULTIPL = r'\*'
-t_INTEGER = r'\d'
 t_INCREMENTADOR = r'[a-zA-Z]\+{2}'
 #Fin aporte Aaron Franco
 
@@ -97,6 +99,9 @@ t_MAS=r'\+'
 t_DIVISION = r'/'
 t_PUNTOCOMA=r';'
 t_PUNTO=r'\.'
+t_INTEGER = r'([1-9]\d+|\d)'
+t_FLOAT = r'([1-9]\d+|\d)\.\d+'
+t_DOSPUNTOS=r':'
 #Fin Aporte Pedro Bajana
 
 #Inicio Aporte Fabrizzio Ontaneda
@@ -111,9 +116,11 @@ t_OR = r'\|\|'
 t_SALTO_LINEA=r'/n'
 t_NEGACION=r'!'
 t_TABULACION=r'/t'
-t_CORCHETE_IZQ=r'\['
-t_CORCHETE_DER=r'\]'
+t_CORCHETE_IZQ= r'\['
+t_CORCHETE_DER= r'\]'
 t_COMA=r','
+
+
 #Fin Aporte Fabrizzio Ontaneda
 
 #Inicio Aporte Aaron Franco

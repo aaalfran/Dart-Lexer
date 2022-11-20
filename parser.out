@@ -4,8 +4,6 @@ Unused terminals:
 
     AND
     COMA
-    CORCHETE_DER
-    CORCHETE_IZQ
     ELSE
     FALSE
     FOR
@@ -37,98 +35,113 @@ Rule 2     sentencias -> comparacion
 Rule 3     sentencias -> operacion
 Rule 4     sentencias -> impresion
 Rule 5     sentencias -> funcion
-Rule 6     asignacion -> declaradores VARIABLE IGUAL tipodato PUNTOCOMA
-Rule 7     comparacion -> VARIABLE comparadores VARIABLE PUNTOCOMA
-Rule 8     operacion -> datonumerico operador datonumerico PUNTOCOMA
-Rule 9     impresion -> PRINT LPARENT tipodato RPARENT PUNTOCOMA
-Rule 10    funcion -> VOID VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER
-Rule 11    funcion -> VOID VARIABLE LPARENT VARIABLE RPARENT LLAVEL LLAVER
-Rule 12    funcion -> VOID VARIABLE LPARENT RPARENT LLAVEL LLAVER
-Rule 13    funcion -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
-Rule 14    funcion -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER
-Rule 15    tipodatofunciones -> INT
-Rule 16    tipodatofunciones -> DOUBLE
-Rule 17    tipodatofunciones -> STRING
-Rule 18    tipodatofunciones -> BOOL
-Rule 19    datonumerico -> INTEGER
-Rule 20    datonumerico -> DOUBLE
-Rule 21    operador -> MAS
-Rule 22    operador -> RESTA
-Rule 23    operador -> MULTIPL
-Rule 24    operador -> DIVISION
-Rule 25    comparadores -> ES_IGUAL
-Rule 26    comparadores -> NO_IGUAL
-Rule 27    comparadores -> MENOR_QUE
-Rule 28    comparadores -> MAYOR_QUE
-Rule 29    comparadores -> MENOR_O_IGUAL
-Rule 30    comparadores -> MAYOR_O_IGUAL
-Rule 31    declaradores -> INT
-Rule 32    declaradores -> CONST
-Rule 33    declaradores -> VAR
-Rule 34    declaradores -> BOOL
-Rule 35    declaradores -> FINAL
-Rule 36    declaradores -> STRING
-Rule 37    tipodato -> INTEGER
-Rule 38    tipodato -> CADENA
-Rule 39    tipodato -> DOUBLE
-Rule 40    tipodato -> VARIABLE
+Rule 6     sentencias -> estructuras
+Rule 7     asignacion -> declaradores VARIABLE IGUAL tipodato PUNTOCOMA
+Rule 8     asignacion -> declaradores VARIABLE IGUAL negativo PUNTOCOMA
+Rule 9     comparacion -> VARIABLE comparadores VARIABLE PUNTOCOMA
+Rule 10    operacion -> datonumerico operador datonumerico PUNTOCOMA
+Rule 11    impresion -> PRINT LPARENT tipodato RPARENT PUNTOCOMA
+Rule 12    funcion -> VOID VARIABLE LPARENT declaracionfunciones VARIABLE RPARENT LLAVEL LLAVER
+Rule 13    funcion -> VOID VARIABLE LPARENT VARIABLE RPARENT LLAVEL LLAVER
+Rule 14    funcion -> VOID VARIABLE LPARENT RPARENT LLAVEL LLAVER
+Rule 15    funcion -> declaracionfunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
+Rule 16    funcion -> declaracionfunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER
+Rule 17    estructuras -> declaradoresestruras VARIABLE IGUAL CORCHETE_IZQ tipodatoestructura CORCHETE_DER PUNTOCOMA
+Rule 18    estructuras -> declaradoresestruras VARIABLE IGUAL LLAVEL tipodato DOSPUNTOS tipodato LLAVER PUNTOCOMA
+Rule 19    estructuras -> declaradoresestruras VARIABLE IGUAL MENOR_QUE declaracionfunciones MAYOR_QUE LLAVEL tipodato LLAVER PUNTOCOMA
+Rule 20    declaracionfunciones -> INT
+Rule 21    declaracionfunciones -> DOUBLE
+Rule 22    declaracionfunciones -> STRING
+Rule 23    declaracionfunciones -> BOOL
+Rule 24    tipodatoestructura -> INTEGER
+Rule 25    tipodatoestructura -> CADENA
+Rule 26    tipodatoestructura -> DOUBLE
+Rule 27    datonumerico -> INTEGER
+Rule 28    datonumerico -> DOUBLE
+Rule 29    operador -> MAS
+Rule 30    operador -> RESTA
+Rule 31    operador -> MULTIPL
+Rule 32    operador -> DIVISION
+Rule 33    comparadores -> ES_IGUAL
+Rule 34    comparadores -> NO_IGUAL
+Rule 35    comparadores -> MENOR_QUE
+Rule 36    comparadores -> MAYOR_QUE
+Rule 37    comparadores -> MENOR_O_IGUAL
+Rule 38    comparadores -> MAYOR_O_IGUAL
+Rule 39    declaradores -> INT
+Rule 40    declaradores -> CONST
+Rule 41    declaradores -> VAR
+Rule 42    declaradores -> BOOL
+Rule 43    declaradores -> FINAL
+Rule 44    declaradores -> STRING
+Rule 45    declaradoresestruras -> CONST
+Rule 46    declaradoresestruras -> VAR
+Rule 47    declaradoresestruras -> FINAL
+Rule 48    negativo -> RESTA INTEGER
+Rule 49    negativo -> RESTA FLOAT
+Rule 50    tipodato -> INTEGER
+Rule 51    tipodato -> CADENA
+Rule 52    tipodato -> FLOAT
+Rule 53    tipodato -> VARIABLE
 
 Terminals, with rules where they appear
 
 AND                  : 
-BOOL                 : 18 34
-CADENA               : 38
+BOOL                 : 23 42
+CADENA               : 25 51
 COMA                 : 
-CONST                : 32
-CORCHETE_DER         : 
-CORCHETE_IZQ         : 
-DIVISION             : 24
-DOUBLE               : 16 20 39
+CONST                : 40 45
+CORCHETE_DER         : 17
+CORCHETE_IZQ         : 17
+DIVISION             : 32
+DOSPUNTOS            : 18
+DOUBLE               : 21 26 28
 ELSE                 : 
-ES_IGUAL             : 25
+ES_IGUAL             : 33
 FALSE                : 
-FINAL                : 35
+FINAL                : 43 47
+FLOAT                : 49 52
 FOR                  : 
 FUNCION              : 
 IF                   : 
-IGUAL                : 6
+IGUAL                : 7 8 17 18 19
 IN                   : 
 INCREMENTADOR        : 
-INT                  : 15 31
-INTEGER              : 19 37
+INT                  : 20 39
+INTEGER              : 24 27 48 50
 LIST                 : 
-LLAVEL               : 10 11 12 13 14
-LLAVER               : 10 11 12 13 14
-LPARENT              : 9 10 11 12 13 14
+LLAVEL               : 12 13 14 15 16 18 19
+LLAVER               : 12 13 14 15 16 18 19
+LPARENT              : 11 12 13 14 15 16
 MAIN                 : 
-MAS                  : 21
-MAYOR_O_IGUAL        : 30
-MAYOR_QUE            : 28
-MENOR_O_IGUAL        : 29
-MENOR_QUE            : 27
-MULTIPL              : 23
+MAS                  : 29
+MAYOR_O_IGUAL        : 38
+MAYOR_QUE            : 19 36
+MENOR_O_IGUAL        : 37
+MENOR_QUE            : 19 35
+MULTIPL              : 31
 NEGACION             : 
-NO_IGUAL             : 26
+NO_IGUAL             : 34
 OR                   : 
 PARSE                : 
-PRINT                : 9
+PRINT                : 11
 PUNTO                : 
-PUNTOCOMA            : 6 7 8 9 13 14
+PUNTOCOMA            : 7 8 9 10 11 15 16 17 18 19
 READLINESYNC         : 
-RESTA                : 22
-RETURN               : 13 14
-RPARENT              : 9 10 11 12 13 14
+RESTA                : 30 48 49
+RETURN               : 15 16
+RPARENT              : 11 12 13 14 15 16
 SALTO_LINEA          : 
 STDIN                : 
-STRING               : 17 36
+STRING               : 22 44
 TABULACION           : 
 TODOUBLE             : 
 TOINT                : 
 TOSTRING             : 
 TRUE                 : 
-VAR                  : 33
-VARIABLE             : 6 7 7 10 10 11 11 12 13 13 14 40
-VOID                 : 10 11 12
+VAR                  : 41 46
+VARIABLE             : 7 8 9 9 12 12 13 13 14 15 15 16 17 18 19 53
+VOID                 : 12 13 14
 WRITE                : 
 error                : 
 
@@ -136,16 +149,20 @@ Nonterminals, with rules where they appear
 
 asignacion           : 1
 comparacion          : 2
-comparadores         : 7
-datonumerico         : 8 8
-declaradores         : 6
+comparadores         : 9
+datonumerico         : 10 10
+declaracionfunciones : 12 15 16 19
+declaradores         : 7 8
+declaradoresestruras : 17 18 19
+estructuras          : 6
 funcion              : 5
 impresion            : 4
+negativo             : 8
 operacion            : 3
-operador             : 8
+operador             : 10
 sentencias           : 0
-tipodato             : 6 9 14
-tipodatofunciones    : 10 13 14
+tipodato             : 7 11 16 18 18 19
+tipodatoestructura   : 17
 
 Parsing method: LALR
 
@@ -157,39 +174,47 @@ state 0
     (3) sentencias -> . operacion
     (4) sentencias -> . impresion
     (5) sentencias -> . funcion
-    (6) asignacion -> . declaradores VARIABLE IGUAL tipodato PUNTOCOMA
-    (7) comparacion -> . VARIABLE comparadores VARIABLE PUNTOCOMA
-    (8) operacion -> . datonumerico operador datonumerico PUNTOCOMA
-    (9) impresion -> . PRINT LPARENT tipodato RPARENT PUNTOCOMA
-    (10) funcion -> . VOID VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER
-    (11) funcion -> . VOID VARIABLE LPARENT VARIABLE RPARENT LLAVEL LLAVER
-    (12) funcion -> . VOID VARIABLE LPARENT RPARENT LLAVEL LLAVER
-    (13) funcion -> . tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
-    (14) funcion -> . tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER
-    (31) declaradores -> . INT
-    (32) declaradores -> . CONST
-    (33) declaradores -> . VAR
-    (34) declaradores -> . BOOL
-    (35) declaradores -> . FINAL
-    (36) declaradores -> . STRING
-    (19) datonumerico -> . INTEGER
-    (20) datonumerico -> . DOUBLE
-    (15) tipodatofunciones -> . INT
-    (16) tipodatofunciones -> . DOUBLE
-    (17) tipodatofunciones -> . STRING
-    (18) tipodatofunciones -> . BOOL
+    (6) sentencias -> . estructuras
+    (7) asignacion -> . declaradores VARIABLE IGUAL tipodato PUNTOCOMA
+    (8) asignacion -> . declaradores VARIABLE IGUAL negativo PUNTOCOMA
+    (9) comparacion -> . VARIABLE comparadores VARIABLE PUNTOCOMA
+    (10) operacion -> . datonumerico operador datonumerico PUNTOCOMA
+    (11) impresion -> . PRINT LPARENT tipodato RPARENT PUNTOCOMA
+    (12) funcion -> . VOID VARIABLE LPARENT declaracionfunciones VARIABLE RPARENT LLAVEL LLAVER
+    (13) funcion -> . VOID VARIABLE LPARENT VARIABLE RPARENT LLAVEL LLAVER
+    (14) funcion -> . VOID VARIABLE LPARENT RPARENT LLAVEL LLAVER
+    (15) funcion -> . declaracionfunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
+    (16) funcion -> . declaracionfunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER
+    (17) estructuras -> . declaradoresestruras VARIABLE IGUAL CORCHETE_IZQ tipodatoestructura CORCHETE_DER PUNTOCOMA
+    (18) estructuras -> . declaradoresestruras VARIABLE IGUAL LLAVEL tipodato DOSPUNTOS tipodato LLAVER PUNTOCOMA
+    (19) estructuras -> . declaradoresestruras VARIABLE IGUAL MENOR_QUE declaracionfunciones MAYOR_QUE LLAVEL tipodato LLAVER PUNTOCOMA
+    (39) declaradores -> . INT
+    (40) declaradores -> . CONST
+    (41) declaradores -> . VAR
+    (42) declaradores -> . BOOL
+    (43) declaradores -> . FINAL
+    (44) declaradores -> . STRING
+    (27) datonumerico -> . INTEGER
+    (28) datonumerico -> . DOUBLE
+    (20) declaracionfunciones -> . INT
+    (21) declaracionfunciones -> . DOUBLE
+    (22) declaracionfunciones -> . STRING
+    (23) declaracionfunciones -> . BOOL
+    (45) declaradoresestruras -> . CONST
+    (46) declaradoresestruras -> . VAR
+    (47) declaradoresestruras -> . FINAL
 
-    VARIABLE        shift and go to state 8
-    PRINT           shift and go to state 10
-    VOID            shift and go to state 11
-    INT             shift and go to state 13
-    CONST           shift and go to state 14
-    VAR             shift and go to state 15
-    BOOL            shift and go to state 16
-    FINAL           shift and go to state 17
-    STRING          shift and go to state 18
-    INTEGER         shift and go to state 19
-    DOUBLE          shift and go to state 20
+    VARIABLE        shift and go to state 9
+    PRINT           shift and go to state 11
+    VOID            shift and go to state 12
+    INT             shift and go to state 15
+    CONST           shift and go to state 16
+    VAR             shift and go to state 17
+    BOOL            shift and go to state 18
+    FINAL           shift and go to state 19
+    STRING          shift and go to state 20
+    INTEGER         shift and go to state 21
+    DOUBLE          shift and go to state 22
 
     sentencias                     shift and go to state 1
     asignacion                     shift and go to state 2
@@ -197,9 +222,11 @@ state 0
     operacion                      shift and go to state 4
     impresion                      shift and go to state 5
     funcion                        shift and go to state 6
-    declaradores                   shift and go to state 7
-    datonumerico                   shift and go to state 9
-    tipodatofunciones              shift and go to state 12
+    estructuras                    shift and go to state 7
+    declaradores                   shift and go to state 8
+    datonumerico                   shift and go to state 10
+    declaracionfunciones           shift and go to state 13
+    declaradoresestruras           shift and go to state 14
 
 state 1
 
@@ -244,620 +271,911 @@ state 6
 
 state 7
 
-    (6) asignacion -> declaradores . VARIABLE IGUAL tipodato PUNTOCOMA
+    (6) sentencias -> estructuras .
 
-    VARIABLE        shift and go to state 21
+    $end            reduce using rule 6 (sentencias -> estructuras .)
 
 
 state 8
 
-    (7) comparacion -> VARIABLE . comparadores VARIABLE PUNTOCOMA
-    (25) comparadores -> . ES_IGUAL
-    (26) comparadores -> . NO_IGUAL
-    (27) comparadores -> . MENOR_QUE
-    (28) comparadores -> . MAYOR_QUE
-    (29) comparadores -> . MENOR_O_IGUAL
-    (30) comparadores -> . MAYOR_O_IGUAL
+    (7) asignacion -> declaradores . VARIABLE IGUAL tipodato PUNTOCOMA
+    (8) asignacion -> declaradores . VARIABLE IGUAL negativo PUNTOCOMA
 
-    ES_IGUAL        shift and go to state 23
-    NO_IGUAL        shift and go to state 24
-    MENOR_QUE       shift and go to state 25
-    MAYOR_QUE       shift and go to state 26
-    MENOR_O_IGUAL   shift and go to state 27
-    MAYOR_O_IGUAL   shift and go to state 28
+    VARIABLE        shift and go to state 23
 
-    comparadores                   shift and go to state 22
 
 state 9
 
-    (8) operacion -> datonumerico . operador datonumerico PUNTOCOMA
-    (21) operador -> . MAS
-    (22) operador -> . RESTA
-    (23) operador -> . MULTIPL
-    (24) operador -> . DIVISION
+    (9) comparacion -> VARIABLE . comparadores VARIABLE PUNTOCOMA
+    (33) comparadores -> . ES_IGUAL
+    (34) comparadores -> . NO_IGUAL
+    (35) comparadores -> . MENOR_QUE
+    (36) comparadores -> . MAYOR_QUE
+    (37) comparadores -> . MENOR_O_IGUAL
+    (38) comparadores -> . MAYOR_O_IGUAL
 
-    MAS             shift and go to state 30
-    RESTA           shift and go to state 31
-    MULTIPL         shift and go to state 32
-    DIVISION        shift and go to state 33
+    ES_IGUAL        shift and go to state 25
+    NO_IGUAL        shift and go to state 26
+    MENOR_QUE       shift and go to state 27
+    MAYOR_QUE       shift and go to state 28
+    MENOR_O_IGUAL   shift and go to state 29
+    MAYOR_O_IGUAL   shift and go to state 30
 
-    operador                       shift and go to state 29
+    comparadores                   shift and go to state 24
 
 state 10
 
-    (9) impresion -> PRINT . LPARENT tipodato RPARENT PUNTOCOMA
+    (10) operacion -> datonumerico . operador datonumerico PUNTOCOMA
+    (29) operador -> . MAS
+    (30) operador -> . RESTA
+    (31) operador -> . MULTIPL
+    (32) operador -> . DIVISION
 
-    LPARENT         shift and go to state 34
+    MAS             shift and go to state 32
+    RESTA           shift and go to state 33
+    MULTIPL         shift and go to state 34
+    DIVISION        shift and go to state 35
 
+    operador                       shift and go to state 31
 
 state 11
 
-    (10) funcion -> VOID . VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER
-    (11) funcion -> VOID . VARIABLE LPARENT VARIABLE RPARENT LLAVEL LLAVER
-    (12) funcion -> VOID . VARIABLE LPARENT RPARENT LLAVEL LLAVER
+    (11) impresion -> PRINT . LPARENT tipodato RPARENT PUNTOCOMA
 
-    VARIABLE        shift and go to state 35
+    LPARENT         shift and go to state 36
 
 
 state 12
 
-    (13) funcion -> tipodatofunciones . VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
-    (14) funcion -> tipodatofunciones . VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER
+    (12) funcion -> VOID . VARIABLE LPARENT declaracionfunciones VARIABLE RPARENT LLAVEL LLAVER
+    (13) funcion -> VOID . VARIABLE LPARENT VARIABLE RPARENT LLAVEL LLAVER
+    (14) funcion -> VOID . VARIABLE LPARENT RPARENT LLAVEL LLAVER
 
-    VARIABLE        shift and go to state 36
+    VARIABLE        shift and go to state 37
 
 
 state 13
 
-    (31) declaradores -> INT .
-    (15) tipodatofunciones -> INT .
-
-  ! reduce/reduce conflict for VARIABLE resolved using rule 15 (tipodatofunciones -> INT .)
-    VARIABLE        reduce using rule 15 (tipodatofunciones -> INT .)
-
-  ! VARIABLE        [ reduce using rule 31 (declaradores -> INT .) ]
-
-
-state 14
-
-    (32) declaradores -> CONST .
-
-    VARIABLE        reduce using rule 32 (declaradores -> CONST .)
-
-
-state 15
-
-    (33) declaradores -> VAR .
-
-    VARIABLE        reduce using rule 33 (declaradores -> VAR .)
-
-
-state 16
-
-    (34) declaradores -> BOOL .
-    (18) tipodatofunciones -> BOOL .
-
-  ! reduce/reduce conflict for VARIABLE resolved using rule 18 (tipodatofunciones -> BOOL .)
-    VARIABLE        reduce using rule 18 (tipodatofunciones -> BOOL .)
-
-  ! VARIABLE        [ reduce using rule 34 (declaradores -> BOOL .) ]
-
-
-state 17
-
-    (35) declaradores -> FINAL .
-
-    VARIABLE        reduce using rule 35 (declaradores -> FINAL .)
-
-
-state 18
-
-    (36) declaradores -> STRING .
-    (17) tipodatofunciones -> STRING .
-
-  ! reduce/reduce conflict for VARIABLE resolved using rule 17 (tipodatofunciones -> STRING .)
-    VARIABLE        reduce using rule 17 (tipodatofunciones -> STRING .)
-
-  ! VARIABLE        [ reduce using rule 36 (declaradores -> STRING .) ]
-
-
-state 19
-
-    (19) datonumerico -> INTEGER .
-
-    MAS             reduce using rule 19 (datonumerico -> INTEGER .)
-    RESTA           reduce using rule 19 (datonumerico -> INTEGER .)
-    MULTIPL         reduce using rule 19 (datonumerico -> INTEGER .)
-    DIVISION        reduce using rule 19 (datonumerico -> INTEGER .)
-    PUNTOCOMA       reduce using rule 19 (datonumerico -> INTEGER .)
-
-
-state 20
-
-    (20) datonumerico -> DOUBLE .
-    (16) tipodatofunciones -> DOUBLE .
-
-    MAS             reduce using rule 20 (datonumerico -> DOUBLE .)
-    RESTA           reduce using rule 20 (datonumerico -> DOUBLE .)
-    MULTIPL         reduce using rule 20 (datonumerico -> DOUBLE .)
-    DIVISION        reduce using rule 20 (datonumerico -> DOUBLE .)
-    VARIABLE        reduce using rule 16 (tipodatofunciones -> DOUBLE .)
-
-
-state 21
-
-    (6) asignacion -> declaradores VARIABLE . IGUAL tipodato PUNTOCOMA
-
-    IGUAL           shift and go to state 37
-
-
-state 22
-
-    (7) comparacion -> VARIABLE comparadores . VARIABLE PUNTOCOMA
+    (15) funcion -> declaracionfunciones . VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
+    (16) funcion -> declaracionfunciones . VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER
 
     VARIABLE        shift and go to state 38
 
 
+state 14
+
+    (17) estructuras -> declaradoresestruras . VARIABLE IGUAL CORCHETE_IZQ tipodatoestructura CORCHETE_DER PUNTOCOMA
+    (18) estructuras -> declaradoresestruras . VARIABLE IGUAL LLAVEL tipodato DOSPUNTOS tipodato LLAVER PUNTOCOMA
+    (19) estructuras -> declaradoresestruras . VARIABLE IGUAL MENOR_QUE declaracionfunciones MAYOR_QUE LLAVEL tipodato LLAVER PUNTOCOMA
+
+    VARIABLE        shift and go to state 39
+
+
+state 15
+
+    (39) declaradores -> INT .
+    (20) declaracionfunciones -> INT .
+
+  ! reduce/reduce conflict for VARIABLE resolved using rule 20 (declaracionfunciones -> INT .)
+    VARIABLE        reduce using rule 20 (declaracionfunciones -> INT .)
+
+  ! VARIABLE        [ reduce using rule 39 (declaradores -> INT .) ]
+
+
+state 16
+
+    (40) declaradores -> CONST .
+    (45) declaradoresestruras -> CONST .
+
+  ! reduce/reduce conflict for VARIABLE resolved using rule 40 (declaradores -> CONST .)
+    VARIABLE        reduce using rule 40 (declaradores -> CONST .)
+
+  ! VARIABLE        [ reduce using rule 45 (declaradoresestruras -> CONST .) ]
+
+
+state 17
+
+    (41) declaradores -> VAR .
+    (46) declaradoresestruras -> VAR .
+
+  ! reduce/reduce conflict for VARIABLE resolved using rule 41 (declaradores -> VAR .)
+    VARIABLE        reduce using rule 41 (declaradores -> VAR .)
+
+  ! VARIABLE        [ reduce using rule 46 (declaradoresestruras -> VAR .) ]
+
+
+state 18
+
+    (42) declaradores -> BOOL .
+    (23) declaracionfunciones -> BOOL .
+
+  ! reduce/reduce conflict for VARIABLE resolved using rule 23 (declaracionfunciones -> BOOL .)
+    VARIABLE        reduce using rule 23 (declaracionfunciones -> BOOL .)
+
+  ! VARIABLE        [ reduce using rule 42 (declaradores -> BOOL .) ]
+
+
+state 19
+
+    (43) declaradores -> FINAL .
+    (47) declaradoresestruras -> FINAL .
+
+  ! reduce/reduce conflict for VARIABLE resolved using rule 43 (declaradores -> FINAL .)
+    VARIABLE        reduce using rule 43 (declaradores -> FINAL .)
+
+  ! VARIABLE        [ reduce using rule 47 (declaradoresestruras -> FINAL .) ]
+
+
+state 20
+
+    (44) declaradores -> STRING .
+    (22) declaracionfunciones -> STRING .
+
+  ! reduce/reduce conflict for VARIABLE resolved using rule 22 (declaracionfunciones -> STRING .)
+    VARIABLE        reduce using rule 22 (declaracionfunciones -> STRING .)
+
+  ! VARIABLE        [ reduce using rule 44 (declaradores -> STRING .) ]
+
+
+state 21
+
+    (27) datonumerico -> INTEGER .
+
+    MAS             reduce using rule 27 (datonumerico -> INTEGER .)
+    RESTA           reduce using rule 27 (datonumerico -> INTEGER .)
+    MULTIPL         reduce using rule 27 (datonumerico -> INTEGER .)
+    DIVISION        reduce using rule 27 (datonumerico -> INTEGER .)
+    PUNTOCOMA       reduce using rule 27 (datonumerico -> INTEGER .)
+
+
+state 22
+
+    (28) datonumerico -> DOUBLE .
+    (21) declaracionfunciones -> DOUBLE .
+
+    MAS             reduce using rule 28 (datonumerico -> DOUBLE .)
+    RESTA           reduce using rule 28 (datonumerico -> DOUBLE .)
+    MULTIPL         reduce using rule 28 (datonumerico -> DOUBLE .)
+    DIVISION        reduce using rule 28 (datonumerico -> DOUBLE .)
+    VARIABLE        reduce using rule 21 (declaracionfunciones -> DOUBLE .)
+
+
 state 23
 
-    (25) comparadores -> ES_IGUAL .
+    (7) asignacion -> declaradores VARIABLE . IGUAL tipodato PUNTOCOMA
+    (8) asignacion -> declaradores VARIABLE . IGUAL negativo PUNTOCOMA
 
-    VARIABLE        reduce using rule 25 (comparadores -> ES_IGUAL .)
+    IGUAL           shift and go to state 40
 
 
 state 24
 
-    (26) comparadores -> NO_IGUAL .
+    (9) comparacion -> VARIABLE comparadores . VARIABLE PUNTOCOMA
 
-    VARIABLE        reduce using rule 26 (comparadores -> NO_IGUAL .)
+    VARIABLE        shift and go to state 41
 
 
 state 25
 
-    (27) comparadores -> MENOR_QUE .
+    (33) comparadores -> ES_IGUAL .
 
-    VARIABLE        reduce using rule 27 (comparadores -> MENOR_QUE .)
+    VARIABLE        reduce using rule 33 (comparadores -> ES_IGUAL .)
 
 
 state 26
 
-    (28) comparadores -> MAYOR_QUE .
+    (34) comparadores -> NO_IGUAL .
 
-    VARIABLE        reduce using rule 28 (comparadores -> MAYOR_QUE .)
+    VARIABLE        reduce using rule 34 (comparadores -> NO_IGUAL .)
 
 
 state 27
 
-    (29) comparadores -> MENOR_O_IGUAL .
+    (35) comparadores -> MENOR_QUE .
 
-    VARIABLE        reduce using rule 29 (comparadores -> MENOR_O_IGUAL .)
+    VARIABLE        reduce using rule 35 (comparadores -> MENOR_QUE .)
 
 
 state 28
 
-    (30) comparadores -> MAYOR_O_IGUAL .
+    (36) comparadores -> MAYOR_QUE .
 
-    VARIABLE        reduce using rule 30 (comparadores -> MAYOR_O_IGUAL .)
+    VARIABLE        reduce using rule 36 (comparadores -> MAYOR_QUE .)
 
 
 state 29
 
-    (8) operacion -> datonumerico operador . datonumerico PUNTOCOMA
-    (19) datonumerico -> . INTEGER
-    (20) datonumerico -> . DOUBLE
+    (37) comparadores -> MENOR_O_IGUAL .
 
-    INTEGER         shift and go to state 19
-    DOUBLE          shift and go to state 40
+    VARIABLE        reduce using rule 37 (comparadores -> MENOR_O_IGUAL .)
 
-    datonumerico                   shift and go to state 39
 
 state 30
 
-    (21) operador -> MAS .
+    (38) comparadores -> MAYOR_O_IGUAL .
 
-    INTEGER         reduce using rule 21 (operador -> MAS .)
-    DOUBLE          reduce using rule 21 (operador -> MAS .)
+    VARIABLE        reduce using rule 38 (comparadores -> MAYOR_O_IGUAL .)
 
 
 state 31
 
-    (22) operador -> RESTA .
+    (10) operacion -> datonumerico operador . datonumerico PUNTOCOMA
+    (27) datonumerico -> . INTEGER
+    (28) datonumerico -> . DOUBLE
 
-    INTEGER         reduce using rule 22 (operador -> RESTA .)
-    DOUBLE          reduce using rule 22 (operador -> RESTA .)
+    INTEGER         shift and go to state 21
+    DOUBLE          shift and go to state 43
 
+    datonumerico                   shift and go to state 42
 
 state 32
 
-    (23) operador -> MULTIPL .
+    (29) operador -> MAS .
 
-    INTEGER         reduce using rule 23 (operador -> MULTIPL .)
-    DOUBLE          reduce using rule 23 (operador -> MULTIPL .)
+    INTEGER         reduce using rule 29 (operador -> MAS .)
+    DOUBLE          reduce using rule 29 (operador -> MAS .)
 
 
 state 33
 
-    (24) operador -> DIVISION .
+    (30) operador -> RESTA .
 
-    INTEGER         reduce using rule 24 (operador -> DIVISION .)
-    DOUBLE          reduce using rule 24 (operador -> DIVISION .)
+    INTEGER         reduce using rule 30 (operador -> RESTA .)
+    DOUBLE          reduce using rule 30 (operador -> RESTA .)
 
 
 state 34
 
-    (9) impresion -> PRINT LPARENT . tipodato RPARENT PUNTOCOMA
-    (37) tipodato -> . INTEGER
-    (38) tipodato -> . CADENA
-    (39) tipodato -> . DOUBLE
-    (40) tipodato -> . VARIABLE
+    (31) operador -> MULTIPL .
 
-    INTEGER         shift and go to state 42
-    CADENA          shift and go to state 43
-    DOUBLE          shift and go to state 44
-    VARIABLE        shift and go to state 45
+    INTEGER         reduce using rule 31 (operador -> MULTIPL .)
+    DOUBLE          reduce using rule 31 (operador -> MULTIPL .)
 
-    tipodato                       shift and go to state 41
 
 state 35
 
-    (10) funcion -> VOID VARIABLE . LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER
-    (11) funcion -> VOID VARIABLE . LPARENT VARIABLE RPARENT LLAVEL LLAVER
-    (12) funcion -> VOID VARIABLE . LPARENT RPARENT LLAVEL LLAVER
+    (32) operador -> DIVISION .
 
-    LPARENT         shift and go to state 46
+    INTEGER         reduce using rule 32 (operador -> DIVISION .)
+    DOUBLE          reduce using rule 32 (operador -> DIVISION .)
 
 
 state 36
 
-    (13) funcion -> tipodatofunciones VARIABLE . LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
-    (14) funcion -> tipodatofunciones VARIABLE . LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER
+    (11) impresion -> PRINT LPARENT . tipodato RPARENT PUNTOCOMA
+    (50) tipodato -> . INTEGER
+    (51) tipodato -> . CADENA
+    (52) tipodato -> . FLOAT
+    (53) tipodato -> . VARIABLE
 
-    LPARENT         shift and go to state 47
+    INTEGER         shift and go to state 45
+    CADENA          shift and go to state 46
+    FLOAT           shift and go to state 47
+    VARIABLE        shift and go to state 48
 
+    tipodato                       shift and go to state 44
 
 state 37
 
-    (6) asignacion -> declaradores VARIABLE IGUAL . tipodato PUNTOCOMA
-    (37) tipodato -> . INTEGER
-    (38) tipodato -> . CADENA
-    (39) tipodato -> . DOUBLE
-    (40) tipodato -> . VARIABLE
+    (12) funcion -> VOID VARIABLE . LPARENT declaracionfunciones VARIABLE RPARENT LLAVEL LLAVER
+    (13) funcion -> VOID VARIABLE . LPARENT VARIABLE RPARENT LLAVEL LLAVER
+    (14) funcion -> VOID VARIABLE . LPARENT RPARENT LLAVEL LLAVER
 
-    INTEGER         shift and go to state 42
-    CADENA          shift and go to state 43
-    DOUBLE          shift and go to state 44
-    VARIABLE        shift and go to state 45
+    LPARENT         shift and go to state 49
 
-    tipodato                       shift and go to state 48
 
 state 38
 
-    (7) comparacion -> VARIABLE comparadores VARIABLE . PUNTOCOMA
+    (15) funcion -> declaracionfunciones VARIABLE . LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
+    (16) funcion -> declaracionfunciones VARIABLE . LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER
 
-    PUNTOCOMA       shift and go to state 49
+    LPARENT         shift and go to state 50
 
 
 state 39
 
-    (8) operacion -> datonumerico operador datonumerico . PUNTOCOMA
+    (17) estructuras -> declaradoresestruras VARIABLE . IGUAL CORCHETE_IZQ tipodatoestructura CORCHETE_DER PUNTOCOMA
+    (18) estructuras -> declaradoresestruras VARIABLE . IGUAL LLAVEL tipodato DOSPUNTOS tipodato LLAVER PUNTOCOMA
+    (19) estructuras -> declaradoresestruras VARIABLE . IGUAL MENOR_QUE declaracionfunciones MAYOR_QUE LLAVEL tipodato LLAVER PUNTOCOMA
 
-    PUNTOCOMA       shift and go to state 50
+    IGUAL           shift and go to state 51
 
 
 state 40
 
-    (20) datonumerico -> DOUBLE .
+    (7) asignacion -> declaradores VARIABLE IGUAL . tipodato PUNTOCOMA
+    (8) asignacion -> declaradores VARIABLE IGUAL . negativo PUNTOCOMA
+    (50) tipodato -> . INTEGER
+    (51) tipodato -> . CADENA
+    (52) tipodato -> . FLOAT
+    (53) tipodato -> . VARIABLE
+    (48) negativo -> . RESTA INTEGER
+    (49) negativo -> . RESTA FLOAT
 
-    PUNTOCOMA       reduce using rule 20 (datonumerico -> DOUBLE .)
+    INTEGER         shift and go to state 45
+    CADENA          shift and go to state 46
+    FLOAT           shift and go to state 47
+    VARIABLE        shift and go to state 48
+    RESTA           shift and go to state 54
 
+    tipodato                       shift and go to state 52
+    negativo                       shift and go to state 53
 
 state 41
 
-    (9) impresion -> PRINT LPARENT tipodato . RPARENT PUNTOCOMA
+    (9) comparacion -> VARIABLE comparadores VARIABLE . PUNTOCOMA
 
-    RPARENT         shift and go to state 51
+    PUNTOCOMA       shift and go to state 55
 
 
 state 42
 
-    (37) tipodato -> INTEGER .
+    (10) operacion -> datonumerico operador datonumerico . PUNTOCOMA
 
-    RPARENT         reduce using rule 37 (tipodato -> INTEGER .)
-    PUNTOCOMA       reduce using rule 37 (tipodato -> INTEGER .)
+    PUNTOCOMA       shift and go to state 56
 
 
 state 43
 
-    (38) tipodato -> CADENA .
+    (28) datonumerico -> DOUBLE .
 
-    RPARENT         reduce using rule 38 (tipodato -> CADENA .)
-    PUNTOCOMA       reduce using rule 38 (tipodato -> CADENA .)
+    PUNTOCOMA       reduce using rule 28 (datonumerico -> DOUBLE .)
 
 
 state 44
 
-    (39) tipodato -> DOUBLE .
+    (11) impresion -> PRINT LPARENT tipodato . RPARENT PUNTOCOMA
 
-    RPARENT         reduce using rule 39 (tipodato -> DOUBLE .)
-    PUNTOCOMA       reduce using rule 39 (tipodato -> DOUBLE .)
+    RPARENT         shift and go to state 57
 
 
 state 45
 
-    (40) tipodato -> VARIABLE .
+    (50) tipodato -> INTEGER .
 
-    RPARENT         reduce using rule 40 (tipodato -> VARIABLE .)
-    PUNTOCOMA       reduce using rule 40 (tipodato -> VARIABLE .)
+    RPARENT         reduce using rule 50 (tipodato -> INTEGER .)
+    PUNTOCOMA       reduce using rule 50 (tipodato -> INTEGER .)
+    DOSPUNTOS       reduce using rule 50 (tipodato -> INTEGER .)
+    LLAVER          reduce using rule 50 (tipodato -> INTEGER .)
 
 
 state 46
 
-    (10) funcion -> VOID VARIABLE LPARENT . tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER
-    (11) funcion -> VOID VARIABLE LPARENT . VARIABLE RPARENT LLAVEL LLAVER
-    (12) funcion -> VOID VARIABLE LPARENT . RPARENT LLAVEL LLAVER
-    (15) tipodatofunciones -> . INT
-    (16) tipodatofunciones -> . DOUBLE
-    (17) tipodatofunciones -> . STRING
-    (18) tipodatofunciones -> . BOOL
+    (51) tipodato -> CADENA .
 
-    VARIABLE        shift and go to state 52
-    RPARENT         shift and go to state 54
-    INT             shift and go to state 55
-    DOUBLE          shift and go to state 56
-    STRING          shift and go to state 57
-    BOOL            shift and go to state 58
+    RPARENT         reduce using rule 51 (tipodato -> CADENA .)
+    PUNTOCOMA       reduce using rule 51 (tipodato -> CADENA .)
+    DOSPUNTOS       reduce using rule 51 (tipodato -> CADENA .)
+    LLAVER          reduce using rule 51 (tipodato -> CADENA .)
 
-    tipodatofunciones              shift and go to state 53
 
 state 47
 
-    (13) funcion -> tipodatofunciones VARIABLE LPARENT . RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
-    (14) funcion -> tipodatofunciones VARIABLE LPARENT . RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER
+    (52) tipodato -> FLOAT .
 
-    RPARENT         shift and go to state 59
+    RPARENT         reduce using rule 52 (tipodato -> FLOAT .)
+    PUNTOCOMA       reduce using rule 52 (tipodato -> FLOAT .)
+    DOSPUNTOS       reduce using rule 52 (tipodato -> FLOAT .)
+    LLAVER          reduce using rule 52 (tipodato -> FLOAT .)
 
 
 state 48
 
-    (6) asignacion -> declaradores VARIABLE IGUAL tipodato . PUNTOCOMA
+    (53) tipodato -> VARIABLE .
 
-    PUNTOCOMA       shift and go to state 60
+    RPARENT         reduce using rule 53 (tipodato -> VARIABLE .)
+    PUNTOCOMA       reduce using rule 53 (tipodato -> VARIABLE .)
+    DOSPUNTOS       reduce using rule 53 (tipodato -> VARIABLE .)
+    LLAVER          reduce using rule 53 (tipodato -> VARIABLE .)
 
 
 state 49
 
-    (7) comparacion -> VARIABLE comparadores VARIABLE PUNTOCOMA .
+    (12) funcion -> VOID VARIABLE LPARENT . declaracionfunciones VARIABLE RPARENT LLAVEL LLAVER
+    (13) funcion -> VOID VARIABLE LPARENT . VARIABLE RPARENT LLAVEL LLAVER
+    (14) funcion -> VOID VARIABLE LPARENT . RPARENT LLAVEL LLAVER
+    (20) declaracionfunciones -> . INT
+    (21) declaracionfunciones -> . DOUBLE
+    (22) declaracionfunciones -> . STRING
+    (23) declaracionfunciones -> . BOOL
 
-    $end            reduce using rule 7 (comparacion -> VARIABLE comparadores VARIABLE PUNTOCOMA .)
+    VARIABLE        shift and go to state 58
+    RPARENT         shift and go to state 60
+    INT             shift and go to state 61
+    DOUBLE          shift and go to state 62
+    STRING          shift and go to state 63
+    BOOL            shift and go to state 64
 
+    declaracionfunciones           shift and go to state 59
 
 state 50
 
-    (8) operacion -> datonumerico operador datonumerico PUNTOCOMA .
+    (15) funcion -> declaracionfunciones VARIABLE LPARENT . RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
+    (16) funcion -> declaracionfunciones VARIABLE LPARENT . RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER
 
-    $end            reduce using rule 8 (operacion -> datonumerico operador datonumerico PUNTOCOMA .)
+    RPARENT         shift and go to state 65
 
 
 state 51
 
-    (9) impresion -> PRINT LPARENT tipodato RPARENT . PUNTOCOMA
+    (17) estructuras -> declaradoresestruras VARIABLE IGUAL . CORCHETE_IZQ tipodatoestructura CORCHETE_DER PUNTOCOMA
+    (18) estructuras -> declaradoresestruras VARIABLE IGUAL . LLAVEL tipodato DOSPUNTOS tipodato LLAVER PUNTOCOMA
+    (19) estructuras -> declaradoresestruras VARIABLE IGUAL . MENOR_QUE declaracionfunciones MAYOR_QUE LLAVEL tipodato LLAVER PUNTOCOMA
 
-    PUNTOCOMA       shift and go to state 61
+    CORCHETE_IZQ    shift and go to state 66
+    LLAVEL          shift and go to state 67
+    MENOR_QUE       shift and go to state 68
 
 
 state 52
 
-    (11) funcion -> VOID VARIABLE LPARENT VARIABLE . RPARENT LLAVEL LLAVER
+    (7) asignacion -> declaradores VARIABLE IGUAL tipodato . PUNTOCOMA
 
-    RPARENT         shift and go to state 62
+    PUNTOCOMA       shift and go to state 69
 
 
 state 53
 
-    (10) funcion -> VOID VARIABLE LPARENT tipodatofunciones . VARIABLE RPARENT LLAVEL LLAVER
+    (8) asignacion -> declaradores VARIABLE IGUAL negativo . PUNTOCOMA
 
-    VARIABLE        shift and go to state 63
+    PUNTOCOMA       shift and go to state 70
 
 
 state 54
 
-    (12) funcion -> VOID VARIABLE LPARENT RPARENT . LLAVEL LLAVER
+    (48) negativo -> RESTA . INTEGER
+    (49) negativo -> RESTA . FLOAT
 
-    LLAVEL          shift and go to state 64
+    INTEGER         shift and go to state 71
+    FLOAT           shift and go to state 72
 
 
 state 55
 
-    (15) tipodatofunciones -> INT .
+    (9) comparacion -> VARIABLE comparadores VARIABLE PUNTOCOMA .
 
-    VARIABLE        reduce using rule 15 (tipodatofunciones -> INT .)
+    $end            reduce using rule 9 (comparacion -> VARIABLE comparadores VARIABLE PUNTOCOMA .)
 
 
 state 56
 
-    (16) tipodatofunciones -> DOUBLE .
+    (10) operacion -> datonumerico operador datonumerico PUNTOCOMA .
 
-    VARIABLE        reduce using rule 16 (tipodatofunciones -> DOUBLE .)
+    $end            reduce using rule 10 (operacion -> datonumerico operador datonumerico PUNTOCOMA .)
 
 
 state 57
 
-    (17) tipodatofunciones -> STRING .
+    (11) impresion -> PRINT LPARENT tipodato RPARENT . PUNTOCOMA
 
-    VARIABLE        reduce using rule 17 (tipodatofunciones -> STRING .)
+    PUNTOCOMA       shift and go to state 73
 
 
 state 58
 
-    (18) tipodatofunciones -> BOOL .
+    (13) funcion -> VOID VARIABLE LPARENT VARIABLE . RPARENT LLAVEL LLAVER
 
-    VARIABLE        reduce using rule 18 (tipodatofunciones -> BOOL .)
+    RPARENT         shift and go to state 74
 
 
 state 59
 
-    (13) funcion -> tipodatofunciones VARIABLE LPARENT RPARENT . LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
-    (14) funcion -> tipodatofunciones VARIABLE LPARENT RPARENT . LLAVEL RETURN tipodato PUNTOCOMA LLAVER
+    (12) funcion -> VOID VARIABLE LPARENT declaracionfunciones . VARIABLE RPARENT LLAVEL LLAVER
 
-    LLAVEL          shift and go to state 65
+    VARIABLE        shift and go to state 75
 
 
 state 60
 
-    (6) asignacion -> declaradores VARIABLE IGUAL tipodato PUNTOCOMA .
+    (14) funcion -> VOID VARIABLE LPARENT RPARENT . LLAVEL LLAVER
 
-    $end            reduce using rule 6 (asignacion -> declaradores VARIABLE IGUAL tipodato PUNTOCOMA .)
+    LLAVEL          shift and go to state 76
 
 
 state 61
 
-    (9) impresion -> PRINT LPARENT tipodato RPARENT PUNTOCOMA .
+    (20) declaracionfunciones -> INT .
 
-    $end            reduce using rule 9 (impresion -> PRINT LPARENT tipodato RPARENT PUNTOCOMA .)
+    VARIABLE        reduce using rule 20 (declaracionfunciones -> INT .)
+    MAYOR_QUE       reduce using rule 20 (declaracionfunciones -> INT .)
 
 
 state 62
 
-    (11) funcion -> VOID VARIABLE LPARENT VARIABLE RPARENT . LLAVEL LLAVER
+    (21) declaracionfunciones -> DOUBLE .
 
-    LLAVEL          shift and go to state 66
+    VARIABLE        reduce using rule 21 (declaracionfunciones -> DOUBLE .)
+    MAYOR_QUE       reduce using rule 21 (declaracionfunciones -> DOUBLE .)
 
 
 state 63
 
-    (10) funcion -> VOID VARIABLE LPARENT tipodatofunciones VARIABLE . RPARENT LLAVEL LLAVER
+    (22) declaracionfunciones -> STRING .
 
-    RPARENT         shift and go to state 67
+    VARIABLE        reduce using rule 22 (declaracionfunciones -> STRING .)
+    MAYOR_QUE       reduce using rule 22 (declaracionfunciones -> STRING .)
 
 
 state 64
 
-    (12) funcion -> VOID VARIABLE LPARENT RPARENT LLAVEL . LLAVER
+    (23) declaracionfunciones -> BOOL .
 
-    LLAVER          shift and go to state 68
+    VARIABLE        reduce using rule 23 (declaracionfunciones -> BOOL .)
+    MAYOR_QUE       reduce using rule 23 (declaracionfunciones -> BOOL .)
 
 
 state 65
 
-    (13) funcion -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL . RETURN VARIABLE PUNTOCOMA LLAVER
-    (14) funcion -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL . RETURN tipodato PUNTOCOMA LLAVER
+    (15) funcion -> declaracionfunciones VARIABLE LPARENT RPARENT . LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
+    (16) funcion -> declaracionfunciones VARIABLE LPARENT RPARENT . LLAVEL RETURN tipodato PUNTOCOMA LLAVER
 
-    RETURN          shift and go to state 69
+    LLAVEL          shift and go to state 77
 
 
 state 66
 
-    (11) funcion -> VOID VARIABLE LPARENT VARIABLE RPARENT LLAVEL . LLAVER
+    (17) estructuras -> declaradoresestruras VARIABLE IGUAL CORCHETE_IZQ . tipodatoestructura CORCHETE_DER PUNTOCOMA
+    (24) tipodatoestructura -> . INTEGER
+    (25) tipodatoestructura -> . CADENA
+    (26) tipodatoestructura -> . DOUBLE
 
-    LLAVER          shift and go to state 70
+    INTEGER         shift and go to state 79
+    CADENA          shift and go to state 80
+    DOUBLE          shift and go to state 81
 
+    tipodatoestructura             shift and go to state 78
 
 state 67
 
-    (10) funcion -> VOID VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT . LLAVEL LLAVER
+    (18) estructuras -> declaradoresestruras VARIABLE IGUAL LLAVEL . tipodato DOSPUNTOS tipodato LLAVER PUNTOCOMA
+    (50) tipodato -> . INTEGER
+    (51) tipodato -> . CADENA
+    (52) tipodato -> . FLOAT
+    (53) tipodato -> . VARIABLE
 
-    LLAVEL          shift and go to state 71
+    INTEGER         shift and go to state 45
+    CADENA          shift and go to state 46
+    FLOAT           shift and go to state 47
+    VARIABLE        shift and go to state 48
 
+    tipodato                       shift and go to state 82
 
 state 68
 
-    (12) funcion -> VOID VARIABLE LPARENT RPARENT LLAVEL LLAVER .
+    (19) estructuras -> declaradoresestruras VARIABLE IGUAL MENOR_QUE . declaracionfunciones MAYOR_QUE LLAVEL tipodato LLAVER PUNTOCOMA
+    (20) declaracionfunciones -> . INT
+    (21) declaracionfunciones -> . DOUBLE
+    (22) declaracionfunciones -> . STRING
+    (23) declaracionfunciones -> . BOOL
 
-    $end            reduce using rule 12 (funcion -> VOID VARIABLE LPARENT RPARENT LLAVEL LLAVER .)
+    INT             shift and go to state 61
+    DOUBLE          shift and go to state 62
+    STRING          shift and go to state 63
+    BOOL            shift and go to state 64
 
+    declaracionfunciones           shift and go to state 83
 
 state 69
 
-    (13) funcion -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN . VARIABLE PUNTOCOMA LLAVER
-    (14) funcion -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN . tipodato PUNTOCOMA LLAVER
-    (37) tipodato -> . INTEGER
-    (38) tipodato -> . CADENA
-    (39) tipodato -> . DOUBLE
-    (40) tipodato -> . VARIABLE
+    (7) asignacion -> declaradores VARIABLE IGUAL tipodato PUNTOCOMA .
 
-    VARIABLE        shift and go to state 72
-    INTEGER         shift and go to state 42
-    CADENA          shift and go to state 43
-    DOUBLE          shift and go to state 44
+    $end            reduce using rule 7 (asignacion -> declaradores VARIABLE IGUAL tipodato PUNTOCOMA .)
 
-    tipodato                       shift and go to state 73
 
 state 70
 
-    (11) funcion -> VOID VARIABLE LPARENT VARIABLE RPARENT LLAVEL LLAVER .
+    (8) asignacion -> declaradores VARIABLE IGUAL negativo PUNTOCOMA .
 
-    $end            reduce using rule 11 (funcion -> VOID VARIABLE LPARENT VARIABLE RPARENT LLAVEL LLAVER .)
+    $end            reduce using rule 8 (asignacion -> declaradores VARIABLE IGUAL negativo PUNTOCOMA .)
 
 
 state 71
 
-    (10) funcion -> VOID VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL . LLAVER
+    (48) negativo -> RESTA INTEGER .
 
-    LLAVER          shift and go to state 74
+    PUNTOCOMA       reduce using rule 48 (negativo -> RESTA INTEGER .)
 
 
 state 72
 
-    (13) funcion -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE . PUNTOCOMA LLAVER
-    (40) tipodato -> VARIABLE .
+    (49) negativo -> RESTA FLOAT .
 
-  ! shift/reduce conflict for PUNTOCOMA resolved as shift
-    PUNTOCOMA       shift and go to state 75
-
-  ! PUNTOCOMA       [ reduce using rule 40 (tipodato -> VARIABLE .) ]
+    PUNTOCOMA       reduce using rule 49 (negativo -> RESTA FLOAT .)
 
 
 state 73
 
-    (14) funcion -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato . PUNTOCOMA LLAVER
+    (11) impresion -> PRINT LPARENT tipodato RPARENT PUNTOCOMA .
 
-    PUNTOCOMA       shift and go to state 76
+    $end            reduce using rule 11 (impresion -> PRINT LPARENT tipodato RPARENT PUNTOCOMA .)
 
 
 state 74
 
-    (10) funcion -> VOID VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER .
+    (13) funcion -> VOID VARIABLE LPARENT VARIABLE RPARENT . LLAVEL LLAVER
 
-    $end            reduce using rule 10 (funcion -> VOID VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER .)
+    LLAVEL          shift and go to state 84
 
 
 state 75
 
-    (13) funcion -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA . LLAVER
+    (12) funcion -> VOID VARIABLE LPARENT declaracionfunciones VARIABLE . RPARENT LLAVEL LLAVER
 
-    LLAVER          shift and go to state 77
+    RPARENT         shift and go to state 85
 
 
 state 76
 
-    (14) funcion -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA . LLAVER
+    (14) funcion -> VOID VARIABLE LPARENT RPARENT LLAVEL . LLAVER
 
-    LLAVER          shift and go to state 78
+    LLAVER          shift and go to state 86
 
 
 state 77
 
-    (13) funcion -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER .
+    (15) funcion -> declaracionfunciones VARIABLE LPARENT RPARENT LLAVEL . RETURN VARIABLE PUNTOCOMA LLAVER
+    (16) funcion -> declaracionfunciones VARIABLE LPARENT RPARENT LLAVEL . RETURN tipodato PUNTOCOMA LLAVER
 
-    $end            reduce using rule 13 (funcion -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER .)
+    RETURN          shift and go to state 87
 
 
 state 78
 
-    (14) funcion -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER .
+    (17) estructuras -> declaradoresestruras VARIABLE IGUAL CORCHETE_IZQ tipodatoestructura . CORCHETE_DER PUNTOCOMA
 
-    $end            reduce using rule 14 (funcion -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER .)
+    CORCHETE_DER    shift and go to state 88
+
+
+state 79
+
+    (24) tipodatoestructura -> INTEGER .
+
+    CORCHETE_DER    reduce using rule 24 (tipodatoestructura -> INTEGER .)
+
+
+state 80
+
+    (25) tipodatoestructura -> CADENA .
+
+    CORCHETE_DER    reduce using rule 25 (tipodatoestructura -> CADENA .)
+
+
+state 81
+
+    (26) tipodatoestructura -> DOUBLE .
+
+    CORCHETE_DER    reduce using rule 26 (tipodatoestructura -> DOUBLE .)
+
+
+state 82
+
+    (18) estructuras -> declaradoresestruras VARIABLE IGUAL LLAVEL tipodato . DOSPUNTOS tipodato LLAVER PUNTOCOMA
+
+    DOSPUNTOS       shift and go to state 89
+
+
+state 83
+
+    (19) estructuras -> declaradoresestruras VARIABLE IGUAL MENOR_QUE declaracionfunciones . MAYOR_QUE LLAVEL tipodato LLAVER PUNTOCOMA
+
+    MAYOR_QUE       shift and go to state 90
+
+
+state 84
+
+    (13) funcion -> VOID VARIABLE LPARENT VARIABLE RPARENT LLAVEL . LLAVER
+
+    LLAVER          shift and go to state 91
+
+
+state 85
+
+    (12) funcion -> VOID VARIABLE LPARENT declaracionfunciones VARIABLE RPARENT . LLAVEL LLAVER
+
+    LLAVEL          shift and go to state 92
+
+
+state 86
+
+    (14) funcion -> VOID VARIABLE LPARENT RPARENT LLAVEL LLAVER .
+
+    $end            reduce using rule 14 (funcion -> VOID VARIABLE LPARENT RPARENT LLAVEL LLAVER .)
+
+
+state 87
+
+    (15) funcion -> declaracionfunciones VARIABLE LPARENT RPARENT LLAVEL RETURN . VARIABLE PUNTOCOMA LLAVER
+    (16) funcion -> declaracionfunciones VARIABLE LPARENT RPARENT LLAVEL RETURN . tipodato PUNTOCOMA LLAVER
+    (50) tipodato -> . INTEGER
+    (51) tipodato -> . CADENA
+    (52) tipodato -> . FLOAT
+    (53) tipodato -> . VARIABLE
+
+    VARIABLE        shift and go to state 93
+    INTEGER         shift and go to state 45
+    CADENA          shift and go to state 46
+    FLOAT           shift and go to state 47
+
+    tipodato                       shift and go to state 94
+
+state 88
+
+    (17) estructuras -> declaradoresestruras VARIABLE IGUAL CORCHETE_IZQ tipodatoestructura CORCHETE_DER . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 95
+
+
+state 89
+
+    (18) estructuras -> declaradoresestruras VARIABLE IGUAL LLAVEL tipodato DOSPUNTOS . tipodato LLAVER PUNTOCOMA
+    (50) tipodato -> . INTEGER
+    (51) tipodato -> . CADENA
+    (52) tipodato -> . FLOAT
+    (53) tipodato -> . VARIABLE
+
+    INTEGER         shift and go to state 45
+    CADENA          shift and go to state 46
+    FLOAT           shift and go to state 47
+    VARIABLE        shift and go to state 48
+
+    tipodato                       shift and go to state 96
+
+state 90
+
+    (19) estructuras -> declaradoresestruras VARIABLE IGUAL MENOR_QUE declaracionfunciones MAYOR_QUE . LLAVEL tipodato LLAVER PUNTOCOMA
+
+    LLAVEL          shift and go to state 97
+
+
+state 91
+
+    (13) funcion -> VOID VARIABLE LPARENT VARIABLE RPARENT LLAVEL LLAVER .
+
+    $end            reduce using rule 13 (funcion -> VOID VARIABLE LPARENT VARIABLE RPARENT LLAVEL LLAVER .)
+
+
+state 92
+
+    (12) funcion -> VOID VARIABLE LPARENT declaracionfunciones VARIABLE RPARENT LLAVEL . LLAVER
+
+    LLAVER          shift and go to state 98
+
+
+state 93
+
+    (15) funcion -> declaracionfunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE . PUNTOCOMA LLAVER
+    (53) tipodato -> VARIABLE .
+
+  ! shift/reduce conflict for PUNTOCOMA resolved as shift
+    PUNTOCOMA       shift and go to state 99
+
+  ! PUNTOCOMA       [ reduce using rule 53 (tipodato -> VARIABLE .) ]
+
+
+state 94
+
+    (16) funcion -> declaracionfunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato . PUNTOCOMA LLAVER
+
+    PUNTOCOMA       shift and go to state 100
+
+
+state 95
+
+    (17) estructuras -> declaradoresestruras VARIABLE IGUAL CORCHETE_IZQ tipodatoestructura CORCHETE_DER PUNTOCOMA .
+
+    $end            reduce using rule 17 (estructuras -> declaradoresestruras VARIABLE IGUAL CORCHETE_IZQ tipodatoestructura CORCHETE_DER PUNTOCOMA .)
+
+
+state 96
+
+    (18) estructuras -> declaradoresestruras VARIABLE IGUAL LLAVEL tipodato DOSPUNTOS tipodato . LLAVER PUNTOCOMA
+
+    LLAVER          shift and go to state 101
+
+
+state 97
+
+    (19) estructuras -> declaradoresestruras VARIABLE IGUAL MENOR_QUE declaracionfunciones MAYOR_QUE LLAVEL . tipodato LLAVER PUNTOCOMA
+    (50) tipodato -> . INTEGER
+    (51) tipodato -> . CADENA
+    (52) tipodato -> . FLOAT
+    (53) tipodato -> . VARIABLE
+
+    INTEGER         shift and go to state 45
+    CADENA          shift and go to state 46
+    FLOAT           shift and go to state 47
+    VARIABLE        shift and go to state 48
+
+    tipodato                       shift and go to state 102
+
+state 98
+
+    (12) funcion -> VOID VARIABLE LPARENT declaracionfunciones VARIABLE RPARENT LLAVEL LLAVER .
+
+    $end            reduce using rule 12 (funcion -> VOID VARIABLE LPARENT declaracionfunciones VARIABLE RPARENT LLAVEL LLAVER .)
+
+
+state 99
+
+    (15) funcion -> declaracionfunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA . LLAVER
+
+    LLAVER          shift and go to state 103
+
+
+state 100
+
+    (16) funcion -> declaracionfunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA . LLAVER
+
+    LLAVER          shift and go to state 104
+
+
+state 101
+
+    (18) estructuras -> declaradoresestruras VARIABLE IGUAL LLAVEL tipodato DOSPUNTOS tipodato LLAVER . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 105
+
+
+state 102
+
+    (19) estructuras -> declaradoresestruras VARIABLE IGUAL MENOR_QUE declaracionfunciones MAYOR_QUE LLAVEL tipodato . LLAVER PUNTOCOMA
+
+    LLAVER          shift and go to state 106
+
+
+state 103
+
+    (15) funcion -> declaracionfunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER .
+
+    $end            reduce using rule 15 (funcion -> declaracionfunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER .)
+
+
+state 104
+
+    (16) funcion -> declaracionfunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER .
+
+    $end            reduce using rule 16 (funcion -> declaracionfunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER .)
+
+
+state 105
+
+    (18) estructuras -> declaradoresestruras VARIABLE IGUAL LLAVEL tipodato DOSPUNTOS tipodato LLAVER PUNTOCOMA .
+
+    $end            reduce using rule 18 (estructuras -> declaradoresestruras VARIABLE IGUAL LLAVEL tipodato DOSPUNTOS tipodato LLAVER PUNTOCOMA .)
+
+
+state 106
+
+    (19) estructuras -> declaradoresestruras VARIABLE IGUAL MENOR_QUE declaracionfunciones MAYOR_QUE LLAVEL tipodato LLAVER . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 107
+
+
+state 107
+
+    (19) estructuras -> declaradoresestruras VARIABLE IGUAL MENOR_QUE declaracionfunciones MAYOR_QUE LLAVEL tipodato LLAVER PUNTOCOMA .
+
+    $end            reduce using rule 19 (estructuras -> declaradoresestruras VARIABLE IGUAL MENOR_QUE declaracionfunciones MAYOR_QUE LLAVEL tipodato LLAVER PUNTOCOMA .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for PUNTOCOMA in state 72 resolved as shift
-WARNING: reduce/reduce conflict in state 13 resolved using rule (tipodatofunciones -> INT)
-WARNING: rejected rule (declaradores -> INT) in state 13
-WARNING: reduce/reduce conflict in state 16 resolved using rule (tipodatofunciones -> BOOL)
-WARNING: rejected rule (declaradores -> BOOL) in state 16
-WARNING: reduce/reduce conflict in state 18 resolved using rule (tipodatofunciones -> STRING)
-WARNING: rejected rule (declaradores -> STRING) in state 18
+WARNING: shift/reduce conflict for PUNTOCOMA in state 93 resolved as shift
+WARNING: reduce/reduce conflict in state 15 resolved using rule (declaracionfunciones -> INT)
+WARNING: rejected rule (declaradores -> INT) in state 15
+WARNING: reduce/reduce conflict in state 16 resolved using rule (declaradores -> CONST)
+WARNING: rejected rule (declaradoresestruras -> CONST) in state 16
+WARNING: reduce/reduce conflict in state 17 resolved using rule (declaradores -> VAR)
+WARNING: rejected rule (declaradoresestruras -> VAR) in state 17
+WARNING: reduce/reduce conflict in state 18 resolved using rule (declaracionfunciones -> BOOL)
+WARNING: rejected rule (declaradores -> BOOL) in state 18
+WARNING: reduce/reduce conflict in state 19 resolved using rule (declaradores -> FINAL)
+WARNING: rejected rule (declaradoresestruras -> FINAL) in state 19
+WARNING: reduce/reduce conflict in state 20 resolved using rule (declaracionfunciones -> STRING)
+WARNING: rejected rule (declaradores -> STRING) in state 20
 WARNING: Rule (declaradores -> INT) is never reduced
+WARNING: Rule (declaradoresestruras -> CONST) is never reduced
+WARNING: Rule (declaradoresestruras -> VAR) is never reduced
 WARNING: Rule (declaradores -> BOOL) is never reduced
+WARNING: Rule (declaradoresestruras -> FINAL) is never reduced
 WARNING: Rule (declaradores -> STRING) is never reduced
