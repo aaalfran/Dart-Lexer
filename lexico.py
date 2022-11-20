@@ -47,8 +47,6 @@ tokens = [
 'VARIABLE',
 'RESTA',
 'MULTIPL',
-'COMILLAS_DOBL',
-'COMILLAS_SIMPL',
 'CADENA',
 'INTEGER',
 'INCREMENTADOR',
@@ -85,8 +83,6 @@ tokens = [
 t_ignore = ' \t'
 t_RESTA =  r'-'
 t_MULTIPL = r'\*'
-t_COMILLAS_DOBL = r'"'
-t_COMILLAS_SIMPL = r"'"
 t_INTEGER = r'0|\-?[1-9][0-9]*'
 t_INCREMENTADOR = r'\++'
 #Fin aporte Aaron Franco
@@ -121,10 +117,9 @@ t_COMA=r','
 #Fin Aporte Fabrizzio Ontaneda
 
 #Inicio Aporte Aaron Franco
-#Definiendo token de funciones
-def t_FUNCION(t):
-    r'^[a-z][a-zA-Z0-9-]*\(.*\)'
-    t.type = reserved.get(t.value, 'FUNCION')
+#Definiendo token de cadenas
+def t_CADENA(t):
+    r'\"[a-zA-Z0-9\!\s]*\"'
     return t
 # Definiendo token de palabras reservadas
 def t_VARIABLE(t):
@@ -139,10 +134,6 @@ def t_error(t):
 def t_COMMENT(t):
     r'(\/\/.*)'
     pass
-
-def t_CADENA(t):
-    r'\" [a-zA-Z]* \"'
-    return t
 #Fin Aporte Aaron Franco
 
 #inicio Aporte Pedro bajaña
