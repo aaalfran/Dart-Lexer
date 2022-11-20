@@ -3,7 +3,7 @@
 ## Descripcion
 El objetivo de este proyecto es crear un analizador lexico y sintactico que cumpla las caracteristicas del lenguaje de programacion Dart, en donde se pase como input un archivo de texto con un codigo fuente en Dart, y el lexer lo que realizara es un analisis linea por linea de cada uno de los tokens detectados.
 
-## Ejemplo de ejecucion
+## Ejemplo de ejecucion - Analizador Lexico
 
 Al ejecutar el codigo, se va a leer el archivo `input.txt`, en este archivo se encuentra todo el codigo fuente que va a ser evaluado por el lexer.
 
@@ -17,3 +17,5 @@ LexToken(VARIABLE,'Precio',80,9)
 
 ```
 Donde LexToken() es el token detectado, el primer argumento es el nombre del token, el segundo argumento es la palabra detectada que hizo match con la expresion regular correpondiente, el tecer argumento es la linea en la que se encontro el token, y el cuarto es la ubicacion de la linea en la que se encontro.
+
+## Ejemplo de ejecucion - Analizador Sintactico
