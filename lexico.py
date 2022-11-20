@@ -100,7 +100,6 @@ t_DIVISION = r'/'
 t_PUNTOCOMA=r';'
 t_PUNTO=r'\.'
 t_INTEGER = r'([1-9]\d+|\d)'
-t_FLOAT = r'([1-9]\d+|\d)\.\d+'
 t_DOSPUNTOS=r':'
 #Fin Aporte Pedro Bajana
 
@@ -124,6 +123,11 @@ t_COMA=r','
 #Fin Aporte Fabrizzio Ontaneda
 
 #Inicio Aporte Aaron Franco
+#Definiendo tocken flotante
+def t_FLOAT(t):
+    r'-?\d+\.\d{1,15}'
+    return t
+
 #Definiendo token de cadenas
 def t_CADENA(t):
     r'\"[a-zA-Z0-9\!\s]*\"'
