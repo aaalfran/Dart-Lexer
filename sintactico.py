@@ -2,9 +2,15 @@ import ply.yacc as sintactico
 from lexico import tokens
 
 
+#INICIO APORTES PEDRO BAJAÑA
+def p_comparacion(p):
+  '''comparaciones : VARIABLE comp VARIABLE PUNTOCOMA
+  '''
 
 def p_asignacion(p):
   'asignacion : declaradores VARIABLE IGUAL tipodato PUNTOCOMA'
+
+
 def p_salida(p):
   'salida : PRINT LPARENT tipodato RPARENT PUNTOCOMA'
 def p_funcion(p):
@@ -12,25 +18,37 @@ def p_funcion(p):
 def p_argumentos(p):
   '''argumentos : VARIABLE
                 | tipodato argumentos '''
+
+#INICIO APORTE PEDRO BAJAÑA
 def p_tipodato(p):
   '''
-  tipodato :  INT
-            | STRING
+  tipodato : INTEGER
+            | CADENA
             | DOUBLE
             | VARIABLE
+
 
   '''
 
 
 def p_declaradores(p):
   '''
-  declaradores : tipodato
+  declaradores : INT
                 | CONST
                 | VAR
                 | BOOL
                 | FINAL
+                | STRING
   '''
-
+def p_simnbolos(p):
+  '''
+  comp : ES_IGUAL
+         | NO_IGUAL
+         | MENOR_QUE
+         | MAYOR_QUE
+         | MENOR_O_IGUAL
+         | MAYOR_O_IGUAL
+  '''
 def p_error(p):
   if p:
     print(

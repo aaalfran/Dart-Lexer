@@ -3,32 +3,24 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 Unused terminals:
 
     AND
-    CADENA
     COMA
     CORCHETE_DER
     CORCHETE_IZQ
     DIVISION
     ELSE
-    ES_IGUAL
     FALSE
     FOR
     FUNCION
     IF
     IN
     INCREMENTADOR
-    INTEGER
     LIST
     LLAVEL
     LLAVER
     MAIN
     MAS
-    MAYOR_O_IGUAL
-    MAYOR_QUE
-    MENOR_O_IGUAL
-    MENOR_QUE
     MULTIPL
     NEGACION
-    NO_IGUAL
     OR
     PARSE
     PUNTO
@@ -47,231 +39,195 @@ Unused terminals:
 
 Grammar
 
-Rule 0     S' -> asignacion
-Rule 1     asignacion -> declaradores VARIABLE IGUAL tipodato PUNTOCOMA
-Rule 2     salida -> PRINT LPARENT tipodato RPARENT PUNTOCOMA
-Rule 3     funcion -> VARIABLE LPARENT argumentos RPARENT PUNTOCOMA
-Rule 4     argumentos -> VARIABLE
-Rule 5     argumentos -> tipodato argumentos
-Rule 6     tipodato -> INT
-Rule 7     tipodato -> STRING
-Rule 8     tipodato -> DOUBLE
-Rule 9     tipodato -> VARIABLE
-Rule 10    declaradores -> tipodato
-Rule 11    declaradores -> CONST
-Rule 12    declaradores -> VAR
-Rule 13    declaradores -> BOOL
-Rule 14    declaradores -> FINAL
+Rule 0     S' -> comparaciones
+Rule 1     comparaciones -> VARIABLE comp VARIABLE PUNTOCOMA
+Rule 2     asignacion -> declaradores VARIABLE IGUAL tipodato PUNTOCOMA
+Rule 3     salida -> PRINT LPARENT tipodato RPARENT PUNTOCOMA
+Rule 4     funcion -> VARIABLE LPARENT argumentos RPARENT PUNTOCOMA
+Rule 5     argumentos -> VARIABLE
+Rule 6     argumentos -> tipodato argumentos
+Rule 7     tipodato -> INTEGER
+Rule 8     tipodato -> CADENA
+Rule 9     tipodato -> DOUBLE
+Rule 10    tipodato -> VARIABLE
+Rule 11    declaradores -> INT
+Rule 12    declaradores -> CONST
+Rule 13    declaradores -> VAR
+Rule 14    declaradores -> BOOL
+Rule 15    declaradores -> FINAL
+Rule 16    declaradores -> STRING
+Rule 17    comp -> ES_IGUAL
+Rule 18    comp -> NO_IGUAL
+Rule 19    comp -> MENOR_QUE
+Rule 20    comp -> MAYOR_QUE
+Rule 21    comp -> MENOR_O_IGUAL
+Rule 22    comp -> MAYOR_O_IGUAL
 
 Terminals, with rules where they appear
 
 AND                  : 
-BOOL                 : 13
-CADENA               : 
+BOOL                 : 14
+CADENA               : 8
 COMA                 : 
-CONST                : 11
+CONST                : 12
 CORCHETE_DER         : 
 CORCHETE_IZQ         : 
 DIVISION             : 
-DOUBLE               : 8
+DOUBLE               : 9
 ELSE                 : 
-ES_IGUAL             : 
+ES_IGUAL             : 17
 FALSE                : 
-FINAL                : 14
+FINAL                : 15
 FOR                  : 
 FUNCION              : 
 IF                   : 
-IGUAL                : 1
+IGUAL                : 2
 IN                   : 
 INCREMENTADOR        : 
-INT                  : 6
-INTEGER              : 
+INT                  : 11
+INTEGER              : 7
 LIST                 : 
 LLAVEL               : 
 LLAVER               : 
-LPARENT              : 2 3
+LPARENT              : 3 4
 MAIN                 : 
 MAS                  : 
-MAYOR_O_IGUAL        : 
-MAYOR_QUE            : 
-MENOR_O_IGUAL        : 
-MENOR_QUE            : 
+MAYOR_O_IGUAL        : 22
+MAYOR_QUE            : 20
+MENOR_O_IGUAL        : 21
+MENOR_QUE            : 19
 MULTIPL              : 
 NEGACION             : 
-NO_IGUAL             : 
+NO_IGUAL             : 18
 OR                   : 
 PARSE                : 
-PRINT                : 2
+PRINT                : 3
 PUNTO                : 
-PUNTOCOMA            : 1 2 3
+PUNTOCOMA            : 1 2 3 4
 READLINESYNC         : 
 RESTA                : 
 RETURN               : 
-RPARENT              : 2 3
+RPARENT              : 3 4
 SALTO_LINEA          : 
 STDIN                : 
-STRING               : 7
+STRING               : 16
 TABULACION           : 
 TODOUBLE             : 
 TOINT                : 
 TOSTRING             : 
 TRUE                 : 
-VAR                  : 12
-VARIABLE             : 1 3 4 9
+VAR                  : 13
+VARIABLE             : 1 1 2 4 5 10
 VOID                 : 
 WRITE                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-argumentos           : 3 5
-asignacion           : 0
-declaradores         : 1
+argumentos           : 4 6
+asignacion           : 
+comp                 : 1
+comparaciones        : 0
+declaradores         : 2
 funcion              : 
 salida               : 
-tipodato             : 1 2 5 10
+tipodato             : 2 3 6
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . asignacion
-    (1) asignacion -> . declaradores VARIABLE IGUAL tipodato PUNTOCOMA
-    (10) declaradores -> . tipodato
-    (11) declaradores -> . CONST
-    (12) declaradores -> . VAR
-    (13) declaradores -> . BOOL
-    (14) declaradores -> . FINAL
-    (6) tipodato -> . INT
-    (7) tipodato -> . STRING
-    (8) tipodato -> . DOUBLE
-    (9) tipodato -> . VARIABLE
+    (0) S' -> . comparaciones
+    (1) comparaciones -> . VARIABLE comp VARIABLE PUNTOCOMA
 
-    CONST           shift and go to state 5
-    VAR             shift and go to state 6
-    BOOL            shift and go to state 7
-    FINAL           shift and go to state 8
-    INT             shift and go to state 9
-    STRING          shift and go to state 10
-    DOUBLE          shift and go to state 11
-    VARIABLE        shift and go to state 3
+    VARIABLE        shift and go to state 2
 
-    asignacion                     shift and go to state 1
-    declaradores                   shift and go to state 2
-    tipodato                       shift and go to state 4
+    comparaciones                  shift and go to state 1
 
 state 1
 
-    (0) S' -> asignacion .
+    (0) S' -> comparaciones .
 
 
 
 state 2
 
-    (1) asignacion -> declaradores . VARIABLE IGUAL tipodato PUNTOCOMA
+    (1) comparaciones -> VARIABLE . comp VARIABLE PUNTOCOMA
+    (17) comp -> . ES_IGUAL
+    (18) comp -> . NO_IGUAL
+    (19) comp -> . MENOR_QUE
+    (20) comp -> . MAYOR_QUE
+    (21) comp -> . MENOR_O_IGUAL
+    (22) comp -> . MAYOR_O_IGUAL
 
-    VARIABLE        shift and go to state 12
+    ES_IGUAL        shift and go to state 4
+    NO_IGUAL        shift and go to state 5
+    MENOR_QUE       shift and go to state 6
+    MAYOR_QUE       shift and go to state 7
+    MENOR_O_IGUAL   shift and go to state 8
+    MAYOR_O_IGUAL   shift and go to state 9
 
+    comp                           shift and go to state 3
 
 state 3
 
-    (9) tipodato -> VARIABLE .
+    (1) comparaciones -> VARIABLE comp . VARIABLE PUNTOCOMA
 
-    VARIABLE        reduce using rule 9 (tipodato -> VARIABLE .)
-    PUNTOCOMA       reduce using rule 9 (tipodato -> VARIABLE .)
+    VARIABLE        shift and go to state 10
 
 
 state 4
 
-    (10) declaradores -> tipodato .
+    (17) comp -> ES_IGUAL .
 
-    VARIABLE        reduce using rule 10 (declaradores -> tipodato .)
+    VARIABLE        reduce using rule 17 (comp -> ES_IGUAL .)
 
 
 state 5
 
-    (11) declaradores -> CONST .
+    (18) comp -> NO_IGUAL .
 
-    VARIABLE        reduce using rule 11 (declaradores -> CONST .)
+    VARIABLE        reduce using rule 18 (comp -> NO_IGUAL .)
 
 
 state 6
 
-    (12) declaradores -> VAR .
+    (19) comp -> MENOR_QUE .
 
-    VARIABLE        reduce using rule 12 (declaradores -> VAR .)
+    VARIABLE        reduce using rule 19 (comp -> MENOR_QUE .)
 
 
 state 7
 
-    (13) declaradores -> BOOL .
+    (20) comp -> MAYOR_QUE .
 
-    VARIABLE        reduce using rule 13 (declaradores -> BOOL .)
+    VARIABLE        reduce using rule 20 (comp -> MAYOR_QUE .)
 
 
 state 8
 
-    (14) declaradores -> FINAL .
+    (21) comp -> MENOR_O_IGUAL .
 
-    VARIABLE        reduce using rule 14 (declaradores -> FINAL .)
+    VARIABLE        reduce using rule 21 (comp -> MENOR_O_IGUAL .)
 
 
 state 9
 
-    (6) tipodato -> INT .
+    (22) comp -> MAYOR_O_IGUAL .
 
-    VARIABLE        reduce using rule 6 (tipodato -> INT .)
-    PUNTOCOMA       reduce using rule 6 (tipodato -> INT .)
+    VARIABLE        reduce using rule 22 (comp -> MAYOR_O_IGUAL .)
 
 
 state 10
 
-    (7) tipodato -> STRING .
+    (1) comparaciones -> VARIABLE comp VARIABLE . PUNTOCOMA
 
-    VARIABLE        reduce using rule 7 (tipodato -> STRING .)
-    PUNTOCOMA       reduce using rule 7 (tipodato -> STRING .)
+    PUNTOCOMA       shift and go to state 11
 
 
 state 11
 
-    (8) tipodato -> DOUBLE .
+    (1) comparaciones -> VARIABLE comp VARIABLE PUNTOCOMA .
 
-    VARIABLE        reduce using rule 8 (tipodato -> DOUBLE .)
-    PUNTOCOMA       reduce using rule 8 (tipodato -> DOUBLE .)
-
-
-state 12
-
-    (1) asignacion -> declaradores VARIABLE . IGUAL tipodato PUNTOCOMA
-
-    IGUAL           shift and go to state 13
-
-
-state 13
-
-    (1) asignacion -> declaradores VARIABLE IGUAL . tipodato PUNTOCOMA
-    (6) tipodato -> . INT
-    (7) tipodato -> . STRING
-    (8) tipodato -> . DOUBLE
-    (9) tipodato -> . VARIABLE
-
-    INT             shift and go to state 9
-    STRING          shift and go to state 10
-    DOUBLE          shift and go to state 11
-    VARIABLE        shift and go to state 3
-
-    tipodato                       shift and go to state 14
-
-state 14
-
-    (1) asignacion -> declaradores VARIABLE IGUAL tipodato . PUNTOCOMA
-
-    PUNTOCOMA       shift and go to state 15
-
-
-state 15
-
-    (1) asignacion -> declaradores VARIABLE IGUAL tipodato PUNTOCOMA .
-
-    $end            reduce using rule 1 (asignacion -> declaradores VARIABLE IGUAL tipodato PUNTOCOMA .)
+    $end            reduce using rule 1 (comparaciones -> VARIABLE comp VARIABLE PUNTOCOMA .)
 
