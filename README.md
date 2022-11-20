@@ -1,7 +1,7 @@
-# Dart Lexer
+# Analizador Lexico y Sintactico de Dart
 
 ## Descripcion
-El objetivo de este proyecto es crear un analizador lexico que cumpla las caracteristicas del lenguaje de programacion Dart, en donde se pase como input un archivo de texto con un codigo fuente en Dart, y el lexer lo que realizara es un analisis linea por linea de cada uno de los tokens detectados.
+El objetivo de este proyecto es crear un analizador lexico y sintactico que cumpla las caracteristicas del lenguaje de programacion Dart, en donde se pase como input un archivo de texto con un codigo fuente en Dart, y el lexer lo que realizara es un analisis linea por linea de cada uno de los tokens detectados.
 
 ## Ejemplo de ejecucion
 
