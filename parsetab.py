@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND BOOL CADENA COMA COMILLAS_DOBL COMILLAS_SIMPL CONST CORCHETE_DER CORCHETE_IZQ DIVISION DOUBLE ELSE ES_IGUAL FALSE FINAL FOR FUNCION IF IGUAL IN INCREMENTADOR INT INTEGER LIST LLAVEL LLAVER LPARENT MAIN MAS MAYOR_O_IGUAL MAYOR_QUE MENOR_O_IGUAL MENOR_QUE MULTIPL NEGACION NO_IGUAL OR PARSE PRINT PUNTO PUNTOCOMA READLINESYNC RESTA RETURN RPARENT SALTO_LINEA STDIN STRING TABULACION TODOUBLE TOINT TOSTRING TRUE VAR VARIABLE VOID WRITEasignacion : VARIABLE IGUAL tipodato PUNTOCOMAsalida : PRINT LPARENT tipodato RPARENT PUNTOCOMAfuncion : VARIABLE LPARENT argumentos RPARENT PUNTOCOMAargumentos : VARIABLE\n                | tipodato argumentos tipodato : INTEGER\n              | VARIABLE'
+_lr_signature = 'AND BOOL CADENA COMA CONST CORCHETE_DER CORCHETE_IZQ DIVISION DOUBLE ELSE ES_IGUAL FALSE FINAL FOR FUNCION IF IGUAL IN INCREMENTADOR INT INTEGER LIST LLAVEL LLAVER LPARENT MAIN MAS MAYOR_O_IGUAL MAYOR_QUE MENOR_O_IGUAL MENOR_QUE MULTIPL NEGACION NO_IGUAL OR PARSE PRINT PUNTO PUNTOCOMA READLINESYNC RESTA RETURN RPARENT SALTO_LINEA STDIN STRING TABULACION TODOUBLE TOINT TOSTRING TRUE VAR VARIABLE VOID WRITEasignacion : declaradores VARIABLE IGUAL tipodato PUNTOCOMAsalida : PRINT LPARENT tipodato RPARENT PUNTOCOMAfuncion : VARIABLE LPARENT argumentos RPARENT PUNTOCOMAargumentos : VARIABLE\n                | tipodato argumentos \n  tipodato :  INT\n            | STRING\n            | DOUBLE\n            | VARIABLE\n\n  \n  declaradores : tipodato\n                | CONST\n                | VAR\n                | BOOL\n                | FINAL\n  '
     
-_lr_action_items = {'VARIABLE':([0,3,],[2,4,]),'$end':([1,7,],[0,-1,]),'IGUAL':([2,],[3,]),'INTEGER':([3,],[6,]),'PUNTOCOMA':([4,5,6,],[-7,7,-6,]),}
+_lr_action_items = {'CONST':([0,],[5,]),'VAR':([0,],[6,]),'BOOL':([0,],[7,]),'FINAL':([0,],[8,]),'INT':([0,13,],[9,9,]),'STRING':([0,13,],[10,10,]),'DOUBLE':([0,13,],[11,11,]),'VARIABLE':([0,2,3,4,5,6,7,8,9,10,11,13,],[3,12,-9,-10,-11,-12,-13,-14,-6,-7,-8,3,]),'$end':([1,15,],[0,-1,]),'PUNTOCOMA':([3,9,10,11,14,],[-9,-6,-7,-8,15,]),'IGUAL':([12,],[13,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'asignacion':([0,],[1,]),'tipodato':([3,],[5,]),}
+_lr_goto_items = {'asignacion':([0,],[1,]),'declaradores':([0,],[2,]),'tipodato':([0,13,],[4,14,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,11 +27,18 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> asignacion","S'",1,None,None,None),
-  ('asignacion -> VARIABLE IGUAL tipodato PUNTOCOMA','asignacion',4,'p_asignacion','sintactico.py',5),
-  ('salida -> PRINT LPARENT tipodato RPARENT PUNTOCOMA','salida',5,'p_salida','sintactico.py',7),
-  ('funcion -> VARIABLE LPARENT argumentos RPARENT PUNTOCOMA','funcion',5,'p_funcion','sintactico.py',9),
-  ('argumentos -> VARIABLE','argumentos',1,'p_argumentos','sintactico.py',11),
-  ('argumentos -> tipodato argumentos','argumentos',2,'p_argumentos','sintactico.py',12),
-  ('tipodato -> INTEGER','tipodato',1,'p_tipodato','sintactico.py',14),
-  ('tipodato -> VARIABLE','tipodato',1,'p_tipodato','sintactico.py',15),
+  ('asignacion -> declaradores VARIABLE IGUAL tipodato PUNTOCOMA','asignacion',5,'p_asignacion','sintactico.py',7),
+  ('salida -> PRINT LPARENT tipodato RPARENT PUNTOCOMA','salida',5,'p_salida','sintactico.py',9),
+  ('funcion -> VARIABLE LPARENT argumentos RPARENT PUNTOCOMA','funcion',5,'p_funcion','sintactico.py',11),
+  ('argumentos -> VARIABLE','argumentos',1,'p_argumentos','sintactico.py',13),
+  ('argumentos -> tipodato argumentos','argumentos',2,'p_argumentos','sintactico.py',14),
+  ('tipodato -> INT','tipodato',1,'p_tipodato','sintactico.py',17),
+  ('tipodato -> STRING','tipodato',1,'p_tipodato','sintactico.py',18),
+  ('tipodato -> DOUBLE','tipodato',1,'p_tipodato','sintactico.py',19),
+  ('tipodato -> VARIABLE','tipodato',1,'p_tipodato','sintactico.py',20),
+  ('declaradores -> tipodato','declaradores',1,'p_declaradores','sintactico.py',27),
+  ('declaradores -> CONST','declaradores',1,'p_declaradores','sintactico.py',28),
+  ('declaradores -> VAR','declaradores',1,'p_declaradores','sintactico.py',29),
+  ('declaradores -> BOOL','declaradores',1,'p_declaradores','sintactico.py',30),
+  ('declaradores -> FINAL','declaradores',1,'p_declaradores','sintactico.py',31),
 ]

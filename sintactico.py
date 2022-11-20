@@ -1,8 +1,10 @@
 import ply.yacc as sintactico
 from lexico import tokens
 
+
+
 def p_asignacion(p):
-  'asignacion : VARIABLE IGUAL tipodato PUNTOCOMA'
+  'asignacion : declaradores VARIABLE IGUAL tipodato PUNTOCOMA'
 def p_salida(p):
   'salida : PRINT LPARENT tipodato RPARENT PUNTOCOMA'
 def p_funcion(p):
@@ -11,8 +13,24 @@ def p_argumentos(p):
   '''argumentos : VARIABLE
                 | tipodato argumentos '''
 def p_tipodato(p):
-  '''tipodato : INTEGER
-              | VARIABLE'''
+  '''
+  tipodato :  INT
+            | STRING
+            | DOUBLE
+            | VARIABLE
+
+  '''
+
+
+def p_declaradores(p):
+  '''
+  declaradores : tipodato
+                | CONST
+                | VAR
+                | BOOL
+                | FINAL
+  '''
+
 def p_error(p):
   if p:
     print(
