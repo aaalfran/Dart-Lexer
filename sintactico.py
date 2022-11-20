@@ -46,8 +46,6 @@ def p_tipodato(p):
             |FALSE
             |TRUE
   '''
-
-
 def p_declaradores(p):
   '''
   declaradores : INT

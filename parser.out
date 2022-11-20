@@ -6,7 +6,6 @@ Unused terminals:
     COMA
     CORCHETE_DER
     CORCHETE_IZQ
-    DIVISION
     ELSE
     FALSE
     FOR
@@ -24,7 +23,11 @@ Unused terminals:
     PARSE
     PUNTO
     READLINESYNC
+
     RESTA
+
+    RETURN
+
     SALTO_LINEA
     STDIN
     TABULACION
@@ -105,10 +108,16 @@ PARSE                :
 PRINT                : 6
 PUNTO                : 
 PUNTOCOMA            : 4 5 6
-READLINESYNC         : 
+READLINESYNC         :
+
 RESTA                : 
 RETURN               : 4 5
 RPARENT              : 1 2 3 4 5 6
+
+RESTA                : 17
+RETURN               : 
+RPARENT              : 3 4
+
 SALTO_LINEA          : 
 STDIN                : 
 STRING               : 9 20
@@ -125,9 +134,20 @@ error                :
 
 Nonterminals, with rules where they appear
 
+
 comp                 : 
 declaradores         : 
 functionless         : 0
+
+argumentos           : 4 6
+asignacion           : 
+comp                 : 1
+comparaciones        : 0
+declaradores         : 2
+funcion              : 
+operacion            : 
+operador             : 2
+
 salida               : 
 tipodato             : 5 6
 tipodatofunciones    : 1 4 5
@@ -223,6 +243,7 @@ state 9
 
     LPARENT         shift and go to state 11
 
+    tipodato                       shift and go to state 11
 
 state 10
 
