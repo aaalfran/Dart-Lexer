@@ -12,11 +12,10 @@ Unused terminals:
     FOR
     FUNCION
     IF
+    IGUAL
     IN
     INCREMENTADOR
     LIST
-    LLAVEL
-    LLAVER
     MAIN
     MAS
     MULTIPL
@@ -26,7 +25,6 @@ Unused terminals:
     PUNTO
     READLINESYNC
     RESTA
-    RETURN
     SALTO_LINEA
     STDIN
     TABULACION
@@ -34,200 +32,408 @@ Unused terminals:
     TOINT
     TOSTRING
     TRUE
-    VOID
     WRITE
 
 Grammar
 
-Rule 0     S' -> comparaciones
-Rule 1     comparaciones -> VARIABLE comp VARIABLE PUNTOCOMA
-Rule 2     asignacion -> declaradores VARIABLE IGUAL tipodato PUNTOCOMA
-Rule 3     salida -> PRINT LPARENT tipodato RPARENT PUNTOCOMA
-Rule 4     funcion -> VARIABLE LPARENT argumentos RPARENT PUNTOCOMA
-Rule 5     argumentos -> VARIABLE
-Rule 6     argumentos -> tipodato argumentos
-Rule 7     tipodato -> INTEGER
-Rule 8     tipodato -> CADENA
-Rule 9     tipodato -> DOUBLE
-Rule 10    tipodato -> VARIABLE
-Rule 11    declaradores -> INT
-Rule 12    declaradores -> CONST
-Rule 13    declaradores -> VAR
-Rule 14    declaradores -> BOOL
-Rule 15    declaradores -> FINAL
-Rule 16    declaradores -> STRING
-Rule 17    comp -> ES_IGUAL
-Rule 18    comp -> NO_IGUAL
-Rule 19    comp -> MENOR_QUE
-Rule 20    comp -> MAYOR_QUE
-Rule 21    comp -> MENOR_O_IGUAL
-Rule 22    comp -> MAYOR_O_IGUAL
+Rule 0     S' -> functionless
+Rule 1     functionless -> VOID VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER
+Rule 2     functionless -> VOID VARIABLE LPARENT VARIABLE RPARENT LLAVEL LLAVER
+Rule 3     functionless -> VOID VARIABLE LPARENT RPARENT LLAVEL LLAVER
+Rule 4     functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
+Rule 5     functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER
+Rule 6     salida -> PRINT LPARENT tipodato RPARENT PUNTOCOMA
+Rule 7     tipodatofunciones -> INT
+Rule 8     tipodatofunciones -> DOUBLE
+Rule 9     tipodatofunciones -> STRING
+Rule 10    tipodatofunciones -> BOOL
+Rule 11    tipodato -> INTEGER
+Rule 12    tipodato -> CADENA
+Rule 13    tipodato -> DOUBLE
+Rule 14    tipodato -> VARIABLE
+Rule 15    declaradores -> INT
+Rule 16    declaradores -> CONST
+Rule 17    declaradores -> VAR
+Rule 18    declaradores -> BOOL
+Rule 19    declaradores -> FINAL
+Rule 20    declaradores -> STRING
+Rule 21    comp -> ES_IGUAL
+Rule 22    comp -> NO_IGUAL
+Rule 23    comp -> MENOR_QUE
+Rule 24    comp -> MAYOR_QUE
+Rule 25    comp -> MENOR_O_IGUAL
+Rule 26    comp -> MAYOR_O_IGUAL
 
 Terminals, with rules where they appear
 
 AND                  : 
-BOOL                 : 14
-CADENA               : 8
+BOOL                 : 10 18
+CADENA               : 12
 COMA                 : 
-CONST                : 12
+CONST                : 16
 CORCHETE_DER         : 
 CORCHETE_IZQ         : 
 DIVISION             : 
-DOUBLE               : 9
+DOUBLE               : 8 13
 ELSE                 : 
-ES_IGUAL             : 17
+ES_IGUAL             : 21
 FALSE                : 
-FINAL                : 15
+FINAL                : 19
 FOR                  : 
 FUNCION              : 
 IF                   : 
-IGUAL                : 2
+IGUAL                : 
 IN                   : 
 INCREMENTADOR        : 
-INT                  : 11
-INTEGER              : 7
+INT                  : 7 15
+INTEGER              : 11
 LIST                 : 
-LLAVEL               : 
-LLAVER               : 
-LPARENT              : 3 4
+LLAVEL               : 1 2 3 4 5
+LLAVER               : 1 2 3 4 5
+LPARENT              : 1 2 3 4 5 6
 MAIN                 : 
 MAS                  : 
-MAYOR_O_IGUAL        : 22
-MAYOR_QUE            : 20
-MENOR_O_IGUAL        : 21
-MENOR_QUE            : 19
+MAYOR_O_IGUAL        : 26
+MAYOR_QUE            : 24
+MENOR_O_IGUAL        : 25
+MENOR_QUE            : 23
 MULTIPL              : 
 NEGACION             : 
-NO_IGUAL             : 18
+NO_IGUAL             : 22
 OR                   : 
 PARSE                : 
-PRINT                : 3
+PRINT                : 6
 PUNTO                : 
-PUNTOCOMA            : 1 2 3 4
+PUNTOCOMA            : 4 5 6
 READLINESYNC         : 
 RESTA                : 
-RETURN               : 
-RPARENT              : 3 4
+RETURN               : 4 5
+RPARENT              : 1 2 3 4 5 6
 SALTO_LINEA          : 
 STDIN                : 
-STRING               : 16
+STRING               : 9 20
 TABULACION           : 
 TODOUBLE             : 
 TOINT                : 
 TOSTRING             : 
 TRUE                 : 
-VAR                  : 13
-VARIABLE             : 1 1 2 4 5 10
-VOID                 : 
+VAR                  : 17
+VARIABLE             : 1 1 2 2 3 4 4 5 14
+VOID                 : 1 2 3
 WRITE                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-argumentos           : 4 6
-asignacion           : 
-comp                 : 1
-comparaciones        : 0
-declaradores         : 2
-funcion              : 
+comp                 : 
+declaradores         : 
+functionless         : 0
 salida               : 
-tipodato             : 2 3 6
+tipodato             : 5 6
+tipodatofunciones    : 1 4 5
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . comparaciones
-    (1) comparaciones -> . VARIABLE comp VARIABLE PUNTOCOMA
+    (0) S' -> . functionless
+    (1) functionless -> . VOID VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER
+    (2) functionless -> . VOID VARIABLE LPARENT VARIABLE RPARENT LLAVEL LLAVER
+    (3) functionless -> . VOID VARIABLE LPARENT RPARENT LLAVEL LLAVER
+    (4) functionless -> . tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
+    (5) functionless -> . tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER
+    (7) tipodatofunciones -> . INT
+    (8) tipodatofunciones -> . DOUBLE
+    (9) tipodatofunciones -> . STRING
+    (10) tipodatofunciones -> . BOOL
 
-    VARIABLE        shift and go to state 2
+    VOID            shift and go to state 2
+    INT             shift and go to state 4
+    DOUBLE          shift and go to state 5
+    STRING          shift and go to state 6
+    BOOL            shift and go to state 7
 
-    comparaciones                  shift and go to state 1
+    functionless                   shift and go to state 1
+    tipodatofunciones              shift and go to state 3
 
 state 1
 
-    (0) S' -> comparaciones .
+    (0) S' -> functionless .
 
 
 
 state 2
 
-    (1) comparaciones -> VARIABLE . comp VARIABLE PUNTOCOMA
-    (17) comp -> . ES_IGUAL
-    (18) comp -> . NO_IGUAL
-    (19) comp -> . MENOR_QUE
-    (20) comp -> . MAYOR_QUE
-    (21) comp -> . MENOR_O_IGUAL
-    (22) comp -> . MAYOR_O_IGUAL
+    (1) functionless -> VOID . VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER
+    (2) functionless -> VOID . VARIABLE LPARENT VARIABLE RPARENT LLAVEL LLAVER
+    (3) functionless -> VOID . VARIABLE LPARENT RPARENT LLAVEL LLAVER
 
-    ES_IGUAL        shift and go to state 4
-    NO_IGUAL        shift and go to state 5
-    MENOR_QUE       shift and go to state 6
-    MAYOR_QUE       shift and go to state 7
-    MENOR_O_IGUAL   shift and go to state 8
-    MAYOR_O_IGUAL   shift and go to state 9
+    VARIABLE        shift and go to state 8
 
-    comp                           shift and go to state 3
 
 state 3
 
-    (1) comparaciones -> VARIABLE comp . VARIABLE PUNTOCOMA
+    (4) functionless -> tipodatofunciones . VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
+    (5) functionless -> tipodatofunciones . VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER
 
-    VARIABLE        shift and go to state 10
+    VARIABLE        shift and go to state 9
 
 
 state 4
 
-    (17) comp -> ES_IGUAL .
+    (7) tipodatofunciones -> INT .
 
-    VARIABLE        reduce using rule 17 (comp -> ES_IGUAL .)
+    VARIABLE        reduce using rule 7 (tipodatofunciones -> INT .)
 
 
 state 5
 
-    (18) comp -> NO_IGUAL .
+    (8) tipodatofunciones -> DOUBLE .
 
-    VARIABLE        reduce using rule 18 (comp -> NO_IGUAL .)
+    VARIABLE        reduce using rule 8 (tipodatofunciones -> DOUBLE .)
 
 
 state 6
 
-    (19) comp -> MENOR_QUE .
+    (9) tipodatofunciones -> STRING .
 
-    VARIABLE        reduce using rule 19 (comp -> MENOR_QUE .)
+    VARIABLE        reduce using rule 9 (tipodatofunciones -> STRING .)
 
 
 state 7
 
-    (20) comp -> MAYOR_QUE .
+    (10) tipodatofunciones -> BOOL .
 
-    VARIABLE        reduce using rule 20 (comp -> MAYOR_QUE .)
+    VARIABLE        reduce using rule 10 (tipodatofunciones -> BOOL .)
 
 
 state 8
 
-    (21) comp -> MENOR_O_IGUAL .
+    (1) functionless -> VOID VARIABLE . LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER
+    (2) functionless -> VOID VARIABLE . LPARENT VARIABLE RPARENT LLAVEL LLAVER
+    (3) functionless -> VOID VARIABLE . LPARENT RPARENT LLAVEL LLAVER
 
-    VARIABLE        reduce using rule 21 (comp -> MENOR_O_IGUAL .)
+    LPARENT         shift and go to state 10
 
 
 state 9
 
-    (22) comp -> MAYOR_O_IGUAL .
+    (4) functionless -> tipodatofunciones VARIABLE . LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
+    (5) functionless -> tipodatofunciones VARIABLE . LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER
 
-    VARIABLE        reduce using rule 22 (comp -> MAYOR_O_IGUAL .)
+    LPARENT         shift and go to state 11
 
 
 state 10
 
-    (1) comparaciones -> VARIABLE comp VARIABLE . PUNTOCOMA
+    (1) functionless -> VOID VARIABLE LPARENT . tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER
+    (2) functionless -> VOID VARIABLE LPARENT . VARIABLE RPARENT LLAVEL LLAVER
+    (3) functionless -> VOID VARIABLE LPARENT . RPARENT LLAVEL LLAVER
+    (7) tipodatofunciones -> . INT
+    (8) tipodatofunciones -> . DOUBLE
+    (9) tipodatofunciones -> . STRING
+    (10) tipodatofunciones -> . BOOL
 
-    PUNTOCOMA       shift and go to state 11
+    VARIABLE        shift and go to state 12
+    RPARENT         shift and go to state 14
+    INT             shift and go to state 4
+    DOUBLE          shift and go to state 5
+    STRING          shift and go to state 6
+    BOOL            shift and go to state 7
 
+    tipodatofunciones              shift and go to state 13
 
 state 11
 
-    (1) comparaciones -> VARIABLE comp VARIABLE PUNTOCOMA .
+    (4) functionless -> tipodatofunciones VARIABLE LPARENT . RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
+    (5) functionless -> tipodatofunciones VARIABLE LPARENT . RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER
 
-    $end            reduce using rule 1 (comparaciones -> VARIABLE comp VARIABLE PUNTOCOMA .)
+    RPARENT         shift and go to state 15
 
+
+state 12
+
+    (2) functionless -> VOID VARIABLE LPARENT VARIABLE . RPARENT LLAVEL LLAVER
+
+    RPARENT         shift and go to state 16
+
+
+state 13
+
+    (1) functionless -> VOID VARIABLE LPARENT tipodatofunciones . VARIABLE RPARENT LLAVEL LLAVER
+
+    VARIABLE        shift and go to state 17
+
+
+state 14
+
+    (3) functionless -> VOID VARIABLE LPARENT RPARENT . LLAVEL LLAVER
+
+    LLAVEL          shift and go to state 18
+
+
+state 15
+
+    (4) functionless -> tipodatofunciones VARIABLE LPARENT RPARENT . LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
+    (5) functionless -> tipodatofunciones VARIABLE LPARENT RPARENT . LLAVEL RETURN tipodato PUNTOCOMA LLAVER
+
+    LLAVEL          shift and go to state 19
+
+
+state 16
+
+    (2) functionless -> VOID VARIABLE LPARENT VARIABLE RPARENT . LLAVEL LLAVER
+
+    LLAVEL          shift and go to state 20
+
+
+state 17
+
+    (1) functionless -> VOID VARIABLE LPARENT tipodatofunciones VARIABLE . RPARENT LLAVEL LLAVER
+
+    RPARENT         shift and go to state 21
+
+
+state 18
+
+    (3) functionless -> VOID VARIABLE LPARENT RPARENT LLAVEL . LLAVER
+
+    LLAVER          shift and go to state 22
+
+
+state 19
+
+    (4) functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL . RETURN VARIABLE PUNTOCOMA LLAVER
+    (5) functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL . RETURN tipodato PUNTOCOMA LLAVER
+
+    RETURN          shift and go to state 23
+
+
+state 20
+
+    (2) functionless -> VOID VARIABLE LPARENT VARIABLE RPARENT LLAVEL . LLAVER
+
+    LLAVER          shift and go to state 24
+
+
+state 21
+
+    (1) functionless -> VOID VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT . LLAVEL LLAVER
+
+    LLAVEL          shift and go to state 25
+
+
+state 22
+
+    (3) functionless -> VOID VARIABLE LPARENT RPARENT LLAVEL LLAVER .
+
+    $end            reduce using rule 3 (functionless -> VOID VARIABLE LPARENT RPARENT LLAVEL LLAVER .)
+
+
+state 23
+
+    (4) functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN . VARIABLE PUNTOCOMA LLAVER
+    (5) functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN . tipodato PUNTOCOMA LLAVER
+    (11) tipodato -> . INTEGER
+    (12) tipodato -> . CADENA
+    (13) tipodato -> . DOUBLE
+    (14) tipodato -> . VARIABLE
+
+    VARIABLE        shift and go to state 26
+    INTEGER         shift and go to state 28
+    CADENA          shift and go to state 29
+    DOUBLE          shift and go to state 30
+
+    tipodato                       shift and go to state 27
+
+state 24
+
+    (2) functionless -> VOID VARIABLE LPARENT VARIABLE RPARENT LLAVEL LLAVER .
+
+    $end            reduce using rule 2 (functionless -> VOID VARIABLE LPARENT VARIABLE RPARENT LLAVEL LLAVER .)
+
+
+state 25
+
+    (1) functionless -> VOID VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL . LLAVER
+
+    LLAVER          shift and go to state 31
+
+
+state 26
+
+    (4) functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE . PUNTOCOMA LLAVER
+    (14) tipodato -> VARIABLE .
+
+  ! shift/reduce conflict for PUNTOCOMA resolved as shift
+    PUNTOCOMA       shift and go to state 32
+
+  ! PUNTOCOMA       [ reduce using rule 14 (tipodato -> VARIABLE .) ]
+
+
+state 27
+
+    (5) functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato . PUNTOCOMA LLAVER
+
+    PUNTOCOMA       shift and go to state 33
+
+
+state 28
+
+    (11) tipodato -> INTEGER .
+
+    PUNTOCOMA       reduce using rule 11 (tipodato -> INTEGER .)
+
+
+state 29
+
+    (12) tipodato -> CADENA .
+
+    PUNTOCOMA       reduce using rule 12 (tipodato -> CADENA .)
+
+
+state 30
+
+    (13) tipodato -> DOUBLE .
+
+    PUNTOCOMA       reduce using rule 13 (tipodato -> DOUBLE .)
+
+
+state 31
+
+    (1) functionless -> VOID VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER .
+
+    $end            reduce using rule 1 (functionless -> VOID VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER .)
+
+
+state 32
+
+    (4) functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA . LLAVER
+
+    LLAVER          shift and go to state 34
+
+
+state 33
+
+    (5) functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA . LLAVER
+
+    LLAVER          shift and go to state 35
+
+
+state 34
+
+    (4) functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER .
+
+    $end            reduce using rule 4 (functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER .)
+
+
+state 35
+
+    (5) functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER .
+
+    $end            reduce using rule 5 (functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PUNTOCOMA in state 26 resolved as shift

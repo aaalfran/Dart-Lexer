@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND BOOL CADENA COMA CONST CORCHETE_DER CORCHETE_IZQ DIVISION DOUBLE ELSE ES_IGUAL FALSE FINAL FOR FUNCION IF IGUAL IN INCREMENTADOR INT INTEGER LIST LLAVEL LLAVER LPARENT MAIN MAS MAYOR_O_IGUAL MAYOR_QUE MENOR_O_IGUAL MENOR_QUE MULTIPL NEGACION NO_IGUAL OR PARSE PRINT PUNTO PUNTOCOMA READLINESYNC RESTA RETURN RPARENT SALTO_LINEA STDIN STRING TABULACION TODOUBLE TOINT TOSTRING TRUE VAR VARIABLE VOID WRITEcomparaciones : VARIABLE comp VARIABLE PUNTOCOMA\n  asignacion : declaradores VARIABLE IGUAL tipodato PUNTOCOMAsalida : PRINT LPARENT tipodato RPARENT PUNTOCOMAfuncion : VARIABLE LPARENT argumentos RPARENT PUNTOCOMAargumentos : VARIABLE\n                | tipodato argumentos \n  tipodato : INTEGER\n            | CADENA\n            | DOUBLE\n            | VARIABLE\n\n\n  \n  declaradores : INT\n                | CONST\n                | VAR\n                | BOOL\n                | FINAL\n                | STRING\n  \n  comp : ES_IGUAL\n         | NO_IGUAL\n         | MENOR_QUE\n         | MAYOR_QUE\n         | MENOR_O_IGUAL\n         | MAYOR_O_IGUAL\n  '
+_lr_signature = 'AND BOOL CADENA COMA CONST CORCHETE_DER CORCHETE_IZQ DIVISION DOUBLE ELSE ES_IGUAL FALSE FINAL FOR FUNCION IF IGUAL IN INCREMENTADOR INT INTEGER LIST LLAVEL LLAVER LPARENT MAIN MAS MAYOR_O_IGUAL MAYOR_QUE MENOR_O_IGUAL MENOR_QUE MULTIPL NEGACION NO_IGUAL OR PARSE PRINT PUNTO PUNTOCOMA READLINESYNC RESTA RETURN RPARENT SALTO_LINEA STDIN STRING TABULACION TODOUBLE TOINT TOSTRING TRUE VAR VARIABLE VOID WRITE\n    functionless : VOID VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER\n               | VOID VARIABLE LPARENT  VARIABLE RPARENT LLAVEL LLAVER\n               | VOID VARIABLE LPARENT RPARENT LLAVEL LLAVER\n               | tipodatofunciones VARIABLE LPARENT  RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER\n               | tipodatofunciones VARIABLE LPARENT  RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER\n  salida : PRINT LPARENT tipodato RPARENT PUNTOCOMA\n  tipodatofunciones : INT\n                     | DOUBLE\n                     | STRING\n                     | BOOL\n  \n  tipodato : INTEGER\n            | CADENA\n            | DOUBLE\n            | VARIABLE\n  \n  declaradores : INT\n                | CONST\n                | VAR\n                | BOOL\n                | FINAL\n                | STRING\n  \n  comp : ES_IGUAL\n         | NO_IGUAL\n         | MENOR_QUE\n         | MAYOR_QUE\n         | MENOR_O_IGUAL\n         | MAYOR_O_IGUAL\n  '
     
-_lr_action_items = {'VARIABLE':([0,3,4,5,6,7,8,9,],[2,10,-17,-18,-19,-20,-21,-22,]),'$end':([1,11,],[0,-1,]),'ES_IGUAL':([2,],[4,]),'NO_IGUAL':([2,],[5,]),'MENOR_QUE':([2,],[6,]),'MAYOR_QUE':([2,],[7,]),'MENOR_O_IGUAL':([2,],[8,]),'MAYOR_O_IGUAL':([2,],[9,]),'PUNTOCOMA':([10,],[11,]),}
+_lr_action_items = {'VOID':([0,],[2,]),'INT':([0,10,],[4,4,]),'DOUBLE':([0,10,23,],[5,5,30,]),'STRING':([0,10,],[6,6,]),'BOOL':([0,10,],[7,7,]),'$end':([1,22,24,31,34,35,],[0,-3,-2,-1,-4,-5,]),'VARIABLE':([2,3,4,5,6,7,10,13,23,],[8,9,-7,-8,-9,-10,12,17,26,]),'LPARENT':([8,9,],[10,11,]),'RPARENT':([10,11,12,17,],[14,15,16,21,]),'LLAVEL':([14,15,16,21,],[18,19,20,25,]),'LLAVER':([18,20,25,32,33,],[22,24,31,34,35,]),'RETURN':([19,],[23,]),'INTEGER':([23,],[28,]),'CADENA':([23,],[29,]),'PUNTOCOMA':([26,27,28,29,30,],[32,33,-11,-12,-13,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'comparaciones':([0,],[1,]),'comp':([2,],[3,]),}
+_lr_goto_items = {'functionless':([0,],[1,]),'tipodatofunciones':([0,10,],[3,13,]),'tipodato':([23,],[27,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,27 +26,31 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> comparaciones","S'",1,None,None,None),
-  ('comparaciones -> VARIABLE comp VARIABLE PUNTOCOMA','comparaciones',4,'p_comparacion','sintactico.py',7),
-  ('asignacion -> declaradores VARIABLE IGUAL tipodato PUNTOCOMA','asignacion',5,'p_asignacion','sintactico.py',11),
-  ('salida -> PRINT LPARENT tipodato RPARENT PUNTOCOMA','salida',5,'p_salida','sintactico.py',15),
-  ('funcion -> VARIABLE LPARENT argumentos RPARENT PUNTOCOMA','funcion',5,'p_funcion','sintactico.py',17),
-  ('argumentos -> VARIABLE','argumentos',1,'p_argumentos','sintactico.py',19),
-  ('argumentos -> tipodato argumentos','argumentos',2,'p_argumentos','sintactico.py',20),
-  ('tipodato -> INTEGER','tipodato',1,'p_tipodato','sintactico.py',25),
-  ('tipodato -> CADENA','tipodato',1,'p_tipodato','sintactico.py',26),
-  ('tipodato -> DOUBLE','tipodato',1,'p_tipodato','sintactico.py',27),
-  ('tipodato -> VARIABLE','tipodato',1,'p_tipodato','sintactico.py',28),
-  ('declaradores -> INT','declaradores',1,'p_declaradores','sintactico.py',36),
-  ('declaradores -> CONST','declaradores',1,'p_declaradores','sintactico.py',37),
-  ('declaradores -> VAR','declaradores',1,'p_declaradores','sintactico.py',38),
-  ('declaradores -> BOOL','declaradores',1,'p_declaradores','sintactico.py',39),
-  ('declaradores -> FINAL','declaradores',1,'p_declaradores','sintactico.py',40),
-  ('declaradores -> STRING','declaradores',1,'p_declaradores','sintactico.py',41),
-  ('comp -> ES_IGUAL','comp',1,'p_simnbolos','sintactico.py',45),
-  ('comp -> NO_IGUAL','comp',1,'p_simnbolos','sintactico.py',46),
-  ('comp -> MENOR_QUE','comp',1,'p_simnbolos','sintactico.py',47),
-  ('comp -> MAYOR_QUE','comp',1,'p_simnbolos','sintactico.py',48),
-  ('comp -> MENOR_O_IGUAL','comp',1,'p_simnbolos','sintactico.py',49),
-  ('comp -> MAYOR_O_IGUAL','comp',1,'p_simnbolos','sintactico.py',50),
+  ("S' -> functionless","S'",1,None,None,None),
+  ('functionless -> VOID VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER','functionless',8,'p_funciones','sintactico.py',9),
+  ('functionless -> VOID VARIABLE LPARENT VARIABLE RPARENT LLAVEL LLAVER','functionless',7,'p_funciones','sintactico.py',10),
+  ('functionless -> VOID VARIABLE LPARENT RPARENT LLAVEL LLAVER','functionless',6,'p_funciones','sintactico.py',11),
+  ('functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER','functionless',9,'p_funciones','sintactico.py',12),
+  ('functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER','functionless',9,'p_funciones','sintactico.py',13),
+  ('salida -> PRINT LPARENT tipodato RPARENT PUNTOCOMA','salida',5,'p_salida','sintactico.py',22),
+  ('tipodatofunciones -> INT','tipodatofunciones',1,'p_tipodato_funciones','sintactico.py',28),
+  ('tipodatofunciones -> DOUBLE','tipodatofunciones',1,'p_tipodato_funciones','sintactico.py',29),
+  ('tipodatofunciones -> STRING','tipodatofunciones',1,'p_tipodato_funciones','sintactico.py',30),
+  ('tipodatofunciones -> BOOL','tipodatofunciones',1,'p_tipodato_funciones','sintactico.py',31),
+  ('tipodato -> INTEGER','tipodato',1,'p_tipodato','sintactico.py',36),
+  ('tipodato -> CADENA','tipodato',1,'p_tipodato','sintactico.py',37),
+  ('tipodato -> DOUBLE','tipodato',1,'p_tipodato','sintactico.py',38),
+  ('tipodato -> VARIABLE','tipodato',1,'p_tipodato','sintactico.py',39),
+  ('declaradores -> INT','declaradores',1,'p_declaradores','sintactico.py',45),
+  ('declaradores -> CONST','declaradores',1,'p_declaradores','sintactico.py',46),
+  ('declaradores -> VAR','declaradores',1,'p_declaradores','sintactico.py',47),
+  ('declaradores -> BOOL','declaradores',1,'p_declaradores','sintactico.py',48),
+  ('declaradores -> FINAL','declaradores',1,'p_declaradores','sintactico.py',49),
+  ('declaradores -> STRING','declaradores',1,'p_declaradores','sintactico.py',50),
+  ('comp -> ES_IGUAL','comp',1,'p_simbolos','sintactico.py',56),
+  ('comp -> NO_IGUAL','comp',1,'p_simbolos','sintactico.py',57),
+  ('comp -> MENOR_QUE','comp',1,'p_simbolos','sintactico.py',58),
+  ('comp -> MAYOR_QUE','comp',1,'p_simbolos','sintactico.py',59),
+  ('comp -> MENOR_O_IGUAL','comp',1,'p_simbolos','sintactico.py',60),
+  ('comp -> MAYOR_O_IGUAL','comp',1,'p_simbolos','sintactico.py',61),
 ]
