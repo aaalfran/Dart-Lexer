@@ -1,0 +1,84 @@
+import ply.yacc as sintactico
+from lexico import tokens
+
+# Inicio Aporte Aaron Franco
+def p_sentencias(p):
+    '''sentencias : asignacion
+                  | comparacion
+                  | operacion
+                  | impresion
+                  | funcion'''
+#Fin Aporte Aaron Franco
+#Inicio Aporte Pedro Bajana
+def p_asignacion(p):
+  'asignacion : declaradores VARIABLE IGUAL tipodato PUNTOCOMA'
+
+def p_comparacion(p):
+  'comparacion : VARIABLE comparadores VARIABLE PUNTOCOMA'
+#Fin Aporte Pedro Bajana
+#Inicio Aporte Aaron Franco
+def p_operacion(p):
+    'operacion : datonumerico operador datonumerico PUNTOCOMA'
+def p_impresion(p):
+  'impresion : PRINT LPARENT tipodato RPARENT PUNTOCOMA'
+def p_funcion(p):
+  'funcion : VARIABLE LPARENT argumentos RPARENT PUNTOCOMA'
+def p_argumentos(p):
+  'argumentos : tipodato '
+def p_datonumerico(p):
+    '''datonumerico : INTEGER
+                    | DOUBLE'''
+def p_operador(p):
+    '''operador : MAS
+                | RESTA
+                | MULTIPL
+                | DIVISION'''
+#Fin aporte Aaron Franco
+#Inicio Aporte Pedro Bajana
+def p_comparadores(p):
+  '''comparadores : ES_IGUAL
+                  | NO_IGUAL
+                  | MENOR_QUE
+                  | MAYOR_QUE
+                  | MENOR_O_IGUAL
+                  | MAYOR_O_IGUAL'''
+def p_declaradores(p):
+  '''declaradores : INT
+                  | CONST
+                  | VAR
+                  | BOOL
+                  | FINAL
+                  | STRING'''
+#Fin Aporte Pedro Bajana
+#Inicio Aporte Aaron Franco
+def p_tipodato(p):
+  '''tipodato : INTEGER
+              | CADENA
+              | DOUBLE
+              | VARIABLE'''
+#Fin Aporte Aaron Franco
+def p_error(p):
+  if p:
+    print(
+      f"Error de sintaxis - Token: {p.type}, Línea: {p.lineno}, Col: {p.lexpos}"
+    )
+    parser.errok()
+  else:
+    print("Error de sintaxis Fin de Linea")
+
+# Build the parser
+parser = sintactico.yacc()
+
+
+def validaRegla(s):
+  result = parser.parse(s)
+  print(result)
+
+
+while True:
+  try:
+    s = input('calc > ')
+  except EOFError:
+    break
+  if not s: continue
+  validaRegla(s)

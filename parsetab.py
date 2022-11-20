@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND BOOL CADENA COMA CONST CORCHETE_DER CORCHETE_IZQ DIVISION DOUBLE ELSE ES_IGUAL FALSE FINAL FOR FUNCION IF IGUAL IN INCREMENTADOR INT INTEGER LIST LLAVEL LLAVER LPARENT MAIN MAS MAYOR_O_IGUAL MAYOR_QUE MENOR_O_IGUAL MENOR_QUE MULTIPL NEGACION NO_IGUAL OR PARSE PRINT PUNTO PUNTOCOMA READLINESYNC RESTA RETURN RPARENT SALTO_LINEA STDIN STRING TABULACION TODOUBLE TOINT TOSTRING TRUE VAR VARIABLE VOID WRITEcomparaciones : VARIABLE comp VARIABLE PUNTOCOMA\n  asignacion : declaradores VARIABLE IGUAL tipodato PUNTOCOMAsalida : PRINT LPARENT tipodato RPARENT PUNTOCOMAfuncion : VARIABLE LPARENT argumentos RPARENT PUNTOCOMAargumentos : VARIABLE\n                | tipodato argumentos \n  tipodato : INTEGER\n            | CADENA\n            | DOUBLE\n            | VARIABLE\n\n\n  \n  declaradores : INT\n                | CONST\n                | VAR\n                | BOOL\n                | FINAL\n                | STRING\n  \n  comp : ES_IGUAL\n         | NO_IGUAL\n         | MENOR_QUE\n         | MAYOR_QUE\n         | MENOR_O_IGUAL\n         | MAYOR_O_IGUAL\n  '
+_lr_signature = 'AND BOOL CADENA COMA CONST CORCHETE_DER CORCHETE_IZQ DIVISION DOUBLE ELSE ES_IGUAL FALSE FINAL FOR FUNCION IF IGUAL IN INCREMENTADOR INT INTEGER LIST LLAVEL LLAVER LPARENT MAIN MAS MAYOR_O_IGUAL MAYOR_QUE MENOR_O_IGUAL MENOR_QUE MULTIPL NEGACION NO_IGUAL OR PARSE PRINT PUNTO PUNTOCOMA READLINESYNC RESTA RETURN RPARENT SALTO_LINEA STDIN STRING TABULACION TODOUBLE TOINT TOSTRING TRUE VAR VARIABLE VOID WRITEsentencias : asignacion\n                  | comparacion\n                  | operacion\n                  | impresion\n                  | funcionasignacion : declaradores VARIABLE IGUAL tipodato PUNTOCOMAcomparacion : VARIABLE comparadores VARIABLE PUNTOCOMAoperacion : datonumerico operador datonumerico PUNTOCOMAimpresion : PRINT LPARENT tipodato RPARENT PUNTOCOMAfuncion : VARIABLE LPARENT argumentos RPARENT PUNTOCOMAargumentos : tipodato datonumerico : INTEGER\n                    | DOUBLEoperador : MAS\n                | RESTA\n                | MULTIPL\n                | DIVISIONcomparadores : ES_IGUAL\n                  | NO_IGUAL\n                  | MENOR_QUE\n                  | MAYOR_QUE\n                  | MENOR_O_IGUAL\n                  | MAYOR_O_IGUALdeclaradores : INT\n                  | CONST\n                  | VAR\n                  | BOOL\n                  | FINAL\n                  | STRINGtipodato : INTEGER\n              | CADENA\n              | DOUBLE\n              | VARIABLE'
     
-_lr_action_items = {'VARIABLE':([0,3,4,5,6,7,8,9,],[2,10,-17,-18,-19,-20,-21,-22,]),'$end':([1,11,],[0,-1,]),'ES_IGUAL':([2,],[4,]),'NO_IGUAL':([2,],[5,]),'MENOR_QUE':([2,],[6,]),'MAYOR_QUE':([2,],[7,]),'MENOR_O_IGUAL':([2,],[8,]),'MAYOR_O_IGUAL':([2,],[9,]),'PUNTOCOMA':([10,],[11,]),}
+_lr_action_items = {'VARIABLE':([0,7,11,12,13,14,15,16,20,21,22,23,24,25,26,27,33,34,],[8,19,-24,-25,-26,-27,-28,-29,35,36,-18,-19,-20,-21,-22,-23,36,36,]),'PRINT':([0,],[10,]),'INT':([0,],[11,]),'CONST':([0,],[12,]),'VAR':([0,],[13,]),'BOOL':([0,],[14,]),'FINAL':([0,],[15,]),'STRING':([0,],[16,]),'INTEGER':([0,21,28,29,30,31,32,33,34,],[17,39,17,-14,-15,-16,-17,39,39,]),'DOUBLE':([0,21,28,29,30,31,32,33,34,],[18,41,18,-14,-15,-16,-17,41,41,]),'$end':([1,2,3,4,5,6,45,47,49,50,51,],[0,-1,-2,-3,-4,-5,-7,-8,-6,-10,-9,]),'LPARENT':([8,10,],[21,33,]),'ES_IGUAL':([8,],[22,]),'NO_IGUAL':([8,],[23,]),'MENOR_QUE':([8,],[24,]),'MAYOR_QUE':([8,],[25,]),'MENOR_O_IGUAL':([8,],[26,]),'MAYOR_O_IGUAL':([8,],[27,]),'MAS':([9,17,18,],[29,-12,-13,]),'RESTA':([9,17,18,],[30,-12,-13,]),'MULTIPL':([9,17,18,],[31,-12,-13,]),'DIVISION':([9,17,18,],[32,-12,-13,]),'PUNTOCOMA':([17,18,35,36,39,40,41,42,44,46,48,],[-12,-13,45,-33,-30,-31,-32,47,49,50,51,]),'IGUAL':([19,],[34,]),'CADENA':([21,33,34,],[40,40,40,]),'RPARENT':([36,37,38,39,40,41,43,],[-33,46,-11,-30,-31,-32,48,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'comparaciones':([0,],[1,]),'comp':([2,],[3,]),}
+_lr_goto_items = {'sentencias':([0,],[1,]),'asignacion':([0,],[2,]),'comparacion':([0,],[3,]),'operacion':([0,],[4,]),'impresion':([0,],[5,]),'funcion':([0,],[6,]),'declaradores':([0,],[7,]),'datonumerico':([0,28,],[9,42,]),'comparadores':([8,],[20,]),'operador':([9,],[28,]),'argumentos':([21,],[37,]),'tipodato':([21,33,34,],[38,43,44,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,27 +26,38 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> comparaciones","S'",1,None,None,None),
-  ('comparaciones -> VARIABLE comp VARIABLE PUNTOCOMA','comparaciones',4,'p_comparacion','sintactico.py',7),
-  ('asignacion -> declaradores VARIABLE IGUAL tipodato PUNTOCOMA','asignacion',5,'p_asignacion','sintactico.py',11),
-  ('salida -> PRINT LPARENT tipodato RPARENT PUNTOCOMA','salida',5,'p_salida','sintactico.py',15),
-  ('funcion -> VARIABLE LPARENT argumentos RPARENT PUNTOCOMA','funcion',5,'p_funcion','sintactico.py',17),
-  ('argumentos -> VARIABLE','argumentos',1,'p_argumentos','sintactico.py',19),
-  ('argumentos -> tipodato argumentos','argumentos',2,'p_argumentos','sintactico.py',20),
-  ('tipodato -> INTEGER','tipodato',1,'p_tipodato','sintactico.py',25),
-  ('tipodato -> CADENA','tipodato',1,'p_tipodato','sintactico.py',26),
-  ('tipodato -> DOUBLE','tipodato',1,'p_tipodato','sintactico.py',27),
-  ('tipodato -> VARIABLE','tipodato',1,'p_tipodato','sintactico.py',28),
-  ('declaradores -> INT','declaradores',1,'p_declaradores','sintactico.py',36),
-  ('declaradores -> CONST','declaradores',1,'p_declaradores','sintactico.py',37),
-  ('declaradores -> VAR','declaradores',1,'p_declaradores','sintactico.py',38),
-  ('declaradores -> BOOL','declaradores',1,'p_declaradores','sintactico.py',39),
-  ('declaradores -> FINAL','declaradores',1,'p_declaradores','sintactico.py',40),
-  ('declaradores -> STRING','declaradores',1,'p_declaradores','sintactico.py',41),
-  ('comp -> ES_IGUAL','comp',1,'p_simnbolos','sintactico.py',45),
-  ('comp -> NO_IGUAL','comp',1,'p_simnbolos','sintactico.py',46),
-  ('comp -> MENOR_QUE','comp',1,'p_simnbolos','sintactico.py',47),
-  ('comp -> MAYOR_QUE','comp',1,'p_simnbolos','sintactico.py',48),
-  ('comp -> MENOR_O_IGUAL','comp',1,'p_simnbolos','sintactico.py',49),
-  ('comp -> MAYOR_O_IGUAL','comp',1,'p_simnbolos','sintactico.py',50),
+  ("S' -> sentencias","S'",1,None,None,None),
+  ('sentencias -> asignacion','sentencias',1,'p_sentencias','sintactico2.py',7),
+  ('sentencias -> comparacion','sentencias',1,'p_sentencias','sintactico2.py',8),
+  ('sentencias -> operacion','sentencias',1,'p_sentencias','sintactico2.py',9),
+  ('sentencias -> impresion','sentencias',1,'p_sentencias','sintactico2.py',10),
+  ('sentencias -> funcion','sentencias',1,'p_sentencias','sintactico2.py',11),
+  ('asignacion -> declaradores VARIABLE IGUAL tipodato PUNTOCOMA','asignacion',5,'p_asignacion','sintactico2.py',14),
+  ('comparacion -> VARIABLE comparadores VARIABLE PUNTOCOMA','comparacion',4,'p_comparacion','sintactico2.py',17),
+  ('operacion -> datonumerico operador datonumerico PUNTOCOMA','operacion',4,'p_operacion','sintactico2.py',19),
+  ('impresion -> PRINT LPARENT tipodato RPARENT PUNTOCOMA','impresion',5,'p_impresion','sintactico2.py',21),
+  ('funcion -> VARIABLE LPARENT argumentos RPARENT PUNTOCOMA','funcion',5,'p_funcion','sintactico2.py',23),
+  ('argumentos -> tipodato','argumentos',1,'p_argumentos','sintactico2.py',25),
+  ('datonumerico -> INTEGER','datonumerico',1,'p_datonumerico','sintactico2.py',27),
+  ('datonumerico -> DOUBLE','datonumerico',1,'p_datonumerico','sintactico2.py',28),
+  ('operador -> MAS','operador',1,'p_operador','sintactico2.py',30),
+  ('operador -> RESTA','operador',1,'p_operador','sintactico2.py',31),
+  ('operador -> MULTIPL','operador',1,'p_operador','sintactico2.py',32),
+  ('operador -> DIVISION','operador',1,'p_operador','sintactico2.py',33),
+  ('comparadores -> ES_IGUAL','comparadores',1,'p_comparadores','sintactico2.py',35),
+  ('comparadores -> NO_IGUAL','comparadores',1,'p_comparadores','sintactico2.py',36),
+  ('comparadores -> MENOR_QUE','comparadores',1,'p_comparadores','sintactico2.py',37),
+  ('comparadores -> MAYOR_QUE','comparadores',1,'p_comparadores','sintactico2.py',38),
+  ('comparadores -> MENOR_O_IGUAL','comparadores',1,'p_comparadores','sintactico2.py',39),
+  ('comparadores -> MAYOR_O_IGUAL','comparadores',1,'p_comparadores','sintactico2.py',40),
+  ('declaradores -> INT','declaradores',1,'p_declaradores','sintactico2.py',42),
+  ('declaradores -> CONST','declaradores',1,'p_declaradores','sintactico2.py',43),
+  ('declaradores -> VAR','declaradores',1,'p_declaradores','sintactico2.py',44),
+  ('declaradores -> BOOL','declaradores',1,'p_declaradores','sintactico2.py',45),
+  ('declaradores -> FINAL','declaradores',1,'p_declaradores','sintactico2.py',46),
+  ('declaradores -> STRING','declaradores',1,'p_declaradores','sintactico2.py',47),
+  ('tipodato -> INTEGER','tipodato',1,'p_tipodato','sintactico2.py',49),
+  ('tipodato -> CADENA','tipodato',1,'p_tipodato','sintactico2.py',50),
+  ('tipodato -> DOUBLE','tipodato',1,'p_tipodato','sintactico2.py',51),
+  ('tipodato -> VARIABLE','tipodato',1,'p_tipodato','sintactico2.py',52),
 ]

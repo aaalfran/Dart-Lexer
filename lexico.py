@@ -83,7 +83,7 @@ tokens = [
 t_ignore = ' \t'
 t_RESTA =  r'-'
 t_MULTIPL = r'\*'
-t_INTEGER = r'0|\-?[1-9][0-9]*'
+t_INTEGER = r'\d'
 t_INCREMENTADOR = r'[a-zA-Z]\+{2}'
 #Fin aporte Aaron Franco
 
