@@ -14,17 +14,15 @@ def p_argumentos(p):
                 | tipodato argumentos '''
 def p_tipodato(p):
   '''
-  tipodato :  INT
+  tipodato :  INTEGER
             | STRING
             | DOUBLE
             | VARIABLE
 
   '''
-
-
 def p_declaradores(p):
   '''
-  declaradores : tipodato
+  declaradores :  INT
                 | CONST
                 | VAR
                 | BOOL

@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND BOOL CADENA COMA CONST CORCHETE_DER CORCHETE_IZQ DIVISION DOUBLE ELSE ES_IGUAL FALSE FINAL FOR FUNCION IF IGUAL IN INCREMENTADOR INT INTEGER LIST LLAVEL LLAVER LPARENT MAIN MAS MAYOR_O_IGUAL MAYOR_QUE MENOR_O_IGUAL MENOR_QUE MULTIPL NEGACION NO_IGUAL OR PARSE PRINT PUNTO PUNTOCOMA READLINESYNC RESTA RETURN RPARENT SALTO_LINEA STDIN STRING TABULACION TODOUBLE TOINT TOSTRING TRUE VAR VARIABLE VOID WRITEasignacion : declaradores VARIABLE IGUAL tipodato PUNTOCOMAsalida : PRINT LPARENT tipodato RPARENT PUNTOCOMAfuncion : VARIABLE LPARENT argumentos RPARENT PUNTOCOMAargumentos : VARIABLE\n                | tipodato argumentos \n  tipodato :  INT\n            | STRING\n            | DOUBLE\n            | VARIABLE\n\n  \n  declaradores : tipodato\n                | CONST\n                | VAR\n                | BOOL\n                | FINAL\n  '
+_lr_signature = 'AND BOOL CADENA COMA CONST CORCHETE_DER CORCHETE_IZQ DIVISION DOUBLE ELSE ES_IGUAL FALSE FINAL FOR FUNCION IF IGUAL IN INCREMENTADOR INT INTEGER LIST LLAVEL LLAVER LPARENT MAIN MAS MAYOR_O_IGUAL MAYOR_QUE MENOR_O_IGUAL MENOR_QUE MULTIPL NEGACION NO_IGUAL OR PARSE PRINT PUNTO PUNTOCOMA READLINESYNC RESTA RETURN RPARENT SALTO_LINEA STDIN STRING TABULACION TODOUBLE TOINT TOSTRING TRUE VAR VARIABLE VOID WRITEasignacion : declaradores VARIABLE IGUAL tipodato PUNTOCOMAoperacion : datonumerico operador datonumerico PUNTOCOMAsalida : PRINT LPARENT tipodato RPARENT PUNTOCOMAfuncion : VARIABLE LPARENT argumentos RPARENT PUNTOCOMAargumentos : VARIABLE\n                | tipodato argumentos \n  tipodato :  INTEGER\n            | STRING\n            | DOUBLE\n            | VARIABLE\n\n  \n  declaradores :  INT\n                | CONST\n                | VAR\n                | BOOL\n                | FINAL\n  \n    operador : MAS\n             | RESTA\n             | MULTIPL\n             | DIVISION\n    \n    \n    datonumerico : INTEGER\n                 | DOUBLE\n    '
     
-_lr_action_items = {'CONST':([0,],[5,]),'VAR':([0,],[6,]),'BOOL':([0,],[7,]),'FINAL':([0,],[8,]),'INT':([0,13,],[9,9,]),'STRING':([0,13,],[10,10,]),'DOUBLE':([0,13,],[11,11,]),'VARIABLE':([0,2,3,4,5,6,7,8,9,10,11,13,],[3,12,-9,-10,-11,-12,-13,-14,-6,-7,-8,3,]),'$end':([1,15,],[0,-1,]),'PUNTOCOMA':([3,9,10,11,14,],[-9,-6,-7,-8,15,]),'IGUAL':([12,],[13,]),}
+_lr_action_items = {'INT':([0,],[3,]),'CONST':([0,],[4,]),'VAR':([0,],[5,]),'BOOL':([0,],[6,]),'FINAL':([0,],[7,]),'$end':([1,15,],[0,-1,]),'VARIABLE':([2,3,4,5,6,7,9,],[8,-11,-12,-13,-14,-15,10,]),'IGUAL':([8,],[9,]),'INTEGER':([9,],[12,]),'STRING':([9,],[13,]),'DOUBLE':([9,],[14,]),'PUNTOCOMA':([10,11,12,13,14,],[-10,15,-7,-8,-9,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'asignacion':([0,],[1,]),'declaradores':([0,],[2,]),'tipodato':([0,13,],[4,14,]),}
+_lr_goto_items = {'asignacion':([0,],[1,]),'declaradores':([0,],[2,]),'tipodato':([9,],[11,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -28,17 +28,24 @@ del _lr_goto_items
 _lr_productions = [
   ("S' -> asignacion","S'",1,None,None,None),
   ('asignacion -> declaradores VARIABLE IGUAL tipodato PUNTOCOMA','asignacion',5,'p_asignacion','sintactico.py',7),
-  ('salida -> PRINT LPARENT tipodato RPARENT PUNTOCOMA','salida',5,'p_salida','sintactico.py',9),
-  ('funcion -> VARIABLE LPARENT argumentos RPARENT PUNTOCOMA','funcion',5,'p_funcion','sintactico.py',11),
-  ('argumentos -> VARIABLE','argumentos',1,'p_argumentos','sintactico.py',13),
-  ('argumentos -> tipodato argumentos','argumentos',2,'p_argumentos','sintactico.py',14),
-  ('tipodato -> INT','tipodato',1,'p_tipodato','sintactico.py',17),
-  ('tipodato -> STRING','tipodato',1,'p_tipodato','sintactico.py',18),
-  ('tipodato -> DOUBLE','tipodato',1,'p_tipodato','sintactico.py',19),
-  ('tipodato -> VARIABLE','tipodato',1,'p_tipodato','sintactico.py',20),
-  ('declaradores -> tipodato','declaradores',1,'p_declaradores','sintactico.py',27),
-  ('declaradores -> CONST','declaradores',1,'p_declaradores','sintactico.py',28),
-  ('declaradores -> VAR','declaradores',1,'p_declaradores','sintactico.py',29),
-  ('declaradores -> BOOL','declaradores',1,'p_declaradores','sintactico.py',30),
-  ('declaradores -> FINAL','declaradores',1,'p_declaradores','sintactico.py',31),
+  ('operacion -> datonumerico operador datonumerico PUNTOCOMA','operacion',4,'p_operacion','sintactico.py',10),
+  ('salida -> PRINT LPARENT tipodato RPARENT PUNTOCOMA','salida',5,'p_salida','sintactico.py',13),
+  ('funcion -> VARIABLE LPARENT argumentos RPARENT PUNTOCOMA','funcion',5,'p_funcion','sintactico.py',15),
+  ('argumentos -> VARIABLE','argumentos',1,'p_argumentos','sintactico.py',17),
+  ('argumentos -> tipodato argumentos','argumentos',2,'p_argumentos','sintactico.py',18),
+  ('tipodato -> INTEGER','tipodato',1,'p_tipodato','sintactico.py',21),
+  ('tipodato -> STRING','tipodato',1,'p_tipodato','sintactico.py',22),
+  ('tipodato -> DOUBLE','tipodato',1,'p_tipodato','sintactico.py',23),
+  ('tipodato -> VARIABLE','tipodato',1,'p_tipodato','sintactico.py',24),
+  ('declaradores -> INT','declaradores',1,'p_declaradores','sintactico.py',29),
+  ('declaradores -> CONST','declaradores',1,'p_declaradores','sintactico.py',30),
+  ('declaradores -> VAR','declaradores',1,'p_declaradores','sintactico.py',31),
+  ('declaradores -> BOOL','declaradores',1,'p_declaradores','sintactico.py',32),
+  ('declaradores -> FINAL','declaradores',1,'p_declaradores','sintactico.py',33),
+  ('operador -> MAS','operador',1,'p_operador','sintactico.py',37),
+  ('operador -> RESTA','operador',1,'p_operador','sintactico.py',38),
+  ('operador -> MULTIPL','operador',1,'p_operador','sintactico.py',39),
+  ('operador -> DIVISION','operador',1,'p_operador','sintactico.py',40),
+  ('datonumerico -> INTEGER','datonumerico',1,'p_datonumerico','sintactico.py',46),
+  ('datonumerico -> DOUBLE','datonumerico',1,'p_datonumerico','sintactico.py',47),
 ]
