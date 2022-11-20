@@ -11,18 +11,21 @@ Unused terminals:
     FOR
     FUNCION
     IF
+    IGUAL
     IN
     INCREMENTADOR
     LIST
-    LLAVEL
-    LLAVER
     MAIN
     NEGACION
     OR
     PARSE
     PUNTO
     READLINESYNC
+
+    RESTA
+
     RETURN
+
     SALTO_LINEA
     STDIN
     TABULACION
@@ -30,7 +33,6 @@ Unused terminals:
     TOINT
     TOSTRING
     TRUE
-    VOID
     WRITE
 
 Grammar
@@ -278,6 +280,7 @@ state 10
 
     LPARENT         shift and go to state 33
 
+    tipodatofunciones              shift and go to state 13
 
 state 11
 
@@ -611,3 +614,14 @@ state 51
 
     $end            reduce using rule 9 (impresion -> PRINT LPARENT tipodato RPARENT PUNTOCOMA .)
 
+
+state 35
+
+    (5) functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER .
+
+    $end            reduce using rule 5 (functionless -> tipodatofunciones VARIABLE LPARENT RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PUNTOCOMA in state 26 resolved as shift
