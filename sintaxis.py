@@ -12,7 +12,6 @@ def p_sentencias(p):
 #Inicio Aporte Pedro Bajana
 def p_asignacion(p):
   'asignacion : declaradores VARIABLE IGUAL tipodato PUNTOCOMA'
-
 def p_comparacion(p):
   'comparacion : VARIABLE comparadores VARIABLE PUNTOCOMA'
 #Fin Aporte Pedro Bajana
@@ -21,10 +20,20 @@ def p_operacion(p):
     'operacion : datonumerico operador datonumerico PUNTOCOMA'
 def p_impresion(p):
   'impresion : PRINT LPARENT tipodato RPARENT PUNTOCOMA'
+#Inicio Aporte Pedro Bajana
 def p_funcion(p):
-  'funcion : VARIABLE LPARENT argumentos RPARENT PUNTOCOMA'
-def p_argumentos(p):
-  'argumentos : tipodato '
+    '''funcion : VOID VARIABLE LPARENT tipodatofunciones VARIABLE RPARENT LLAVEL LLAVER
+               | VOID VARIABLE LPARENT  VARIABLE RPARENT LLAVEL LLAVER
+               | VOID VARIABLE LPARENT RPARENT LLAVEL LLAVER
+               | tipodatofunciones VARIABLE LPARENT  RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
+               | tipodatofunciones VARIABLE LPARENT  RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER'''
+def p_tipodato_funciones(p):
+  '''tipodatofunciones : INT
+                       | DOUBLE
+                       | STRING
+                       | BOOL'''
+#Fin Aporte Pedro Bajana
+#Inicio Aporte Aaron Franco
 def p_datonumerico(p):
     '''datonumerico : INTEGER
                     | DOUBLE'''
