@@ -35,6 +35,7 @@ reserved = {
 'parse':'PARSE',
 'final':'FINAL',
 'const':'CONST',
+'stdout':'STDOUT',
 'in':'IN'
 #Fin Aporte Fabrizzio Ontaneda
 }

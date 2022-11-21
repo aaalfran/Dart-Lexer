@@ -8,7 +8,12 @@ def p_sentencias(p):
                   | operacion
                   | impresion
                   | funcion
-                  | estructuras'''
+                  | estructuras
+                  | for
+                  | if
+                  | if-else
+                  | write
+                   '''
 #Fin Aporte Aaron Franco
 #Inicio Aporte Pedro Bajana
 def p_asignacion(p):
@@ -23,6 +28,9 @@ def p_operacion(p):
     'operacion : datonumerico operador datonumerico PUNTOCOMA'
 def p_impresion(p):
   'impresion : PRINT LPARENT tipodato RPARENT PUNTOCOMA'
+
+
+
 #Inicio Aporte Pedro Bajana
 def p_funcion(p):
     '''funcion : VOID VARIABLE LPARENT declaracionfunciones VARIABLE RPARENT LLAVEL LLAVER
@@ -31,11 +39,32 @@ def p_funcion(p):
                | declaracionfunciones VARIABLE LPARENT  RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
                | declaracionfunciones VARIABLE LPARENT  RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER'''
 
-
 def p_estructuras(p):
   '''estructuras : declaradoresestruras VARIABLE IGUAL CORCHETE_IZQ tipodatoestructura CORCHETE_DER PUNTOCOMA
              | declaradoresestruras VARIABLE IGUAL LLAVEL tipodato DOSPUNTOS tipodato LLAVER PUNTOCOMA
              | declaradoresestruras VARIABLE IGUAL MENOR_QUE declaracionfunciones MAYOR_QUE LLAVEL tipodato LLAVER PUNTOCOMA'''
+#Fin Aporte Pedro Bajana
+
+#Inicio Aporte Fabrizzio Ontaneda
+def p_estructura_for(p):
+  '''for : FOR LPARENT declaradores VARIABLE IN VARIABLE RPARENT LLAVEL LLAVER
+          | FOR LPARENT declaradores VARIABLE IGUAL INTEGER PUNTOCOMA VARIABLE comparadores INTEGER PUNTOCOMA VARIABLE operador operador RPARENT LLAVEL LLAVER'''
+def p_if(p):
+  '''if : IF LPARENT VARIABLE RPARENT LLAVEL LLAVER
+        | IF LPARENT TRUE RPARENT LLAVEL LLAVER
+        | IF LPARENT FALSE RPARENT LLAVEL LLAVER
+        | IF LPARENT VARIABLE comparadores VARIABLE RPARENT LLAVEL LLAVER
+        | IF LPARENT datonumerico comparadores datonumerico RPARENT LLAVEL LLAVER'''
+
+def p_if_else(p):
+  '''if-else : if ELSE LLAVEL LLAVER'''
+
+def p_write(p):
+  '''write : STDOUT PUNTO WRITE LPARENT tipodato RPARENT PUNTOCOMA'''
+
+#Fin Aporte Fabrizzio Ontaneda
+
+#Inicio Aporte Pedro Bajana
 def p_tipodato_funciones(p):
   '''declaracionfunciones : INT
                        | DOUBLE
@@ -93,6 +122,10 @@ def p_tipodato(p):
               | VARIABLE
             '''
 #Fin Aporte Aaron Franco
+
+
+
+
 def p_error(p):
   if p:
     print(
@@ -102,6 +135,7 @@ def p_error(p):
   else:
     print("Error de sintaxis Fin de Linea")
 
+
 # Build the parser
 parser = sintactico.yacc()
 
@@ -109,7 +143,6 @@ parser = sintactico.yacc()
 def validaRegla(s):
   result = parser.parse(s)
   print(result)
-
 
 while True:
   try:
