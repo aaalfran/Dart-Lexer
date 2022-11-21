@@ -1,4 +1,5 @@
 import ply.yacc as sintactico
+import datetime
 from lexico import tokens
 
 # Inicio Aporte Aaron Franco
@@ -265,16 +266,42 @@ def p_error(p):
 
 
 
+#Crear Log
 
+file1 = open("log.txt","a") 
+date_time = datetime.datetime.now()
 
+file1.write("Prueba Realizada el dia: "+ date_time.strftime("%d/%m/%Y")+ " a las: "+ date_time.strftime("%X")+"\n") 
 
-
-
-
+ 
 # Build the parser
 parser = sintactico.yacc()
 
+file = open('./input.dart', 'r')
+content = file.read()
 
+lines = 0
+for item in content.splitlines():
+    lines += 1
+    if item:
+        gram = parser.parse(item)
+        if gram is None:
+            print(f"Linea: {str(lines)} | Info: No hay errores!")
+            file1.write(f"Linea: {str(lines)} | Info: No hay errores! \n")
+        else:
+            print(f"Linea: {str(lines)} | Info: {str(gram)}")
+            file1.write(f"Linea: {str(lines)} | Info: {str(gram)}")
+
+
+file.close() 
+
+
+
+
+
+
+
+'''
 def validaRegla(s):
   result = parser.parse(s)
   print(result)
@@ -286,19 +313,9 @@ while True:
     break
   if not s: continue
   validaRegla(s)
-
-
 '''
-file = open('./input.dart', 'r')
-content = file.read()
 
-lines = 0
-for item in content.splitlines():
-    lines += 1
-    if item:
-        gram = parser.parse(item)
-        if gram is None:
-            print(f"Linea: {str(lines)} | Info: No hay errores!")
-        else:
-            print(f"Linea: {str(lines)} | Info: {str(gram)}")
-'''
+
+
+
+
