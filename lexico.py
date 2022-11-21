@@ -175,10 +175,12 @@ while(True):
     analizador(cadena)
 '''
 # Lee el archivo input.txt y el lexer obtendra los tokens respectivos
+'''
 archivo = open("input.txt","r")
 for linea in archivo:
   print(">>" + linea)
   analizador(linea)
   if len(linea) == 0:
     break
+'''
 #Fin Aporte Aaron Franco
