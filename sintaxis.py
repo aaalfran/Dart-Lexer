@@ -142,7 +142,13 @@ def p_funcion(p):
                | declaracionfunciones VARIABLE LPARENT  RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER'''
 # Fin Aporte Pedro Bajana
 
-
+def p_statement(p):
+    '''statement :  impresion
+               | if
+               | VARIABLE IGUAL operacion
+               | if-else
+               | for
+                '''
 
 
 
@@ -198,8 +204,8 @@ def p_declaracionesfor(p):
                       | VARIABLE'''
 
 def p_estructura_for(p):
-  '''for : FOR LPARENT declaracionesfor VARIABLE IN VARIABLE RPARENT LLAVEL LLAVER
-          | FOR LPARENT declaracionesfor VARIABLE IGUAL INTEGER PUNTOCOMA VARIABLE comparadores INTEGER PUNTOCOMA VARIABLE operador operador RPARENT LLAVEL LLAVER'''
+  '''for : FOR LPARENT declaracionesfor VARIABLE IN VARIABLE RPARENT LLAVEL statement LLAVER
+          | FOR LPARENT declaracionesfor VARIABLE IGUAL INTEGER PUNTOCOMA VARIABLE comparadores INTEGER PUNTOCOMA VARIABLE operador operador RPARENT LLAVEL statement LLAVER'''
 # Fin Aporte Fabrizzio Ontaneda
 
 
@@ -215,11 +221,11 @@ def p_estructura_for(p):
 
 # Inicio Aporte Fabrizzio Ontaneda
 def p_if(p):
-  '''if : IF LPARENT VARIABLE RPARENT LLAVEL LLAVER
-        | IF LPARENT TRUE RPARENT LLAVEL LLAVER
-        | IF LPARENT FALSE RPARENT LLAVEL LLAVER
-        | IF LPARENT VARIABLE comparadores VARIABLE RPARENT LLAVEL LLAVER
-        | IF LPARENT datonumerico comparadores datonumerico RPARENT LLAVEL LLAVER'''
+  '''if : IF LPARENT VARIABLE RPARENT LLAVEL statement LLAVER
+        | IF LPARENT TRUE RPARENT LLAVEL statement LLAVER
+        | IF LPARENT FALSE RPARENT LLAVEL statement LLAVER
+        | IF LPARENT VARIABLE comparadores VARIABLE RPARENT LLAVEL statement LLAVER
+        | IF LPARENT datonumerico comparadores datonumerico RPARENT LLAVEL statement LLAVER'''
 # Fin Aporte Fabrizzio Ontaneda
 
 
@@ -231,18 +237,21 @@ def p_if(p):
 
 # Inicio Aporte Fabrizzio Ontaneda
 def p_if_else(p):
-  '''if-else : if ELSE LLAVEL LLAVER'''
+  '''if-else : if ELSE LLAVEL statement LLAVER'''
 # Fin Aporte Fabrizzio Ontaneda
 
 
 
 
 
-#OPERACION WRITE
+#OPERACION WRITE-READ
 
 # Inicio Aporte Fabrizzio Ontaneda
 def p_write(p):
-  '''write : STDOUT PUNTO WRITE LPARENT tipodato RPARENT PUNTOCOMA'''   
+  '''write : STDOUT PUNTO WRITE LPARENT tipodato RPARENT PUNTOCOMA'''
+
+def p_read(p):
+  '''read : STDIN PUNTO READLINESYNC LPARENT RPARENT PUNTOCOMA'''
 # Fin Aporte Fabrizzio Ontaneda
 
 
