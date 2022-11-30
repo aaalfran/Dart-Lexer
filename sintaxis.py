@@ -160,7 +160,7 @@ def p_cuerpo_estruct(p):
     '''
 
 
-#Regla semántica al esperar una operación lógica como condición de terminación
+#Regla semántica 2 al esperar una operación lógica como condición de terminación
 def p_for(p):
     '''
     for : FOR LPARENT IGUAL operacion_log PUNTOCOMA operaciones RPARENT cuerpo_estruct
@@ -170,21 +170,21 @@ def p_for(p):
     '''
 
 
-#Regla semántica al esperar una operación lógica como condición
+#Regla semántica 3 al esperar una operación lógica como condición
 def p_if(p):
     '''
     if : IF LPARENT operacion_log RPARENT cuerpo_estruct
     '''
 
 
-#Regla semántica al esperar una operación lógica como condición
+#Regla semántica 4 al esperar una operación lógica como condición
 def p_if_else(p):
     '''
     if_else : IF LPARENT operacion_log RPARENT cuerpo_estruct ELSE cuerpo_estruct
     '''
 
 
-#Regla semántica al esperar una operación lógica como condición
+#Regla semántica 5 al esperar una operación lógica como condición
 def p_while(p):
     '''
     while : WHILE LPARENT operacion_log RPARENT cuerpo_estruct
@@ -210,10 +210,13 @@ def p_continue(p):
 
 def p_read(p):
     '''
-    read : STDIN PUNTO READLINESYNC LPARENT RPARENT
+    read : STDIN PUNTO READLINESYNC LPARENT RPARENT PUNTOCOMA
     '''
 
-
+def p_write(p):
+    '''
+    read : STDOUT PUNTO WRITE LPARENT CADENA RPARENT PUNTOCOMA
+    '''
 
 
 def p_return(p):
