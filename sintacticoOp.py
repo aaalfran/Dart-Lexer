@@ -50,7 +50,8 @@ def p_cuerpo_lista_BOOLEAN(p):
 #Regla semántica 6 las listas solo poseen un tipo de dato específico
 def p_lista(p):
     '''
-    lista :  LIST MENOR_QUE STRING MAYOR_QUE VARIABLE IGUAL CORCH_IZQ cuerpo_lista_string CORCH_DER PUNTOCOMA
+    lista :  LIST MENOR_QUE datos MAYOR_QUE VARIABLE PUNTOCOMA
+           | LIST MENOR_QUE STRING MAYOR_QUE VARIABLE IGUAL CORCH_IZQ cuerpo_lista_string CORCH_DER PUNTOCOMA
            | LIST MENOR_QUE INT MAYOR_QUE VARIABLE IGUAL CORCH_IZQ cuerpo_lista_integer CORCH_DER PUNTOCOMA
            | LIST MENOR_QUE DOUBLE MAYOR_QUE VARIABLE IGUAL CORCH_IZQ cuerpo_lista_double CORCH_DER PUNTOCOMA
            | LIST MENOR_QUE BOOL MAYOR_QUE VARIABLE IGUAL CORCH_IZQ cuerpo_lista_boolean CORCH_DER PUNTOCOMA
