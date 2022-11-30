@@ -160,13 +160,17 @@ def t_NEWLINE(t):
 #Inicio Aporte Aaron Franco
 #Creando Lexer
 lexer = lex.lex()
-def analizador(data):
-  lexer.input(data)
-  while True:
-    tok = lexer.token()
-    if not tok:
-      break
-    print(tok)
+def analizadorLexico(cadena):
+    tokensListR=[]
+    # analizador = lex.lex()
+    lexer.input(cadena)
+    while True:
+        tokenR=lexer.token()
+        if tokenR!=None:
+            tokensListR.append(tokenR)
+        else:
+            break
+    return tokensListR
 
 #Descomentar para usar analizador en tiempo real por consola
 '''   
