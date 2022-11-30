@@ -1,299 +1,263 @@
 import ply.yacc as sintactico
-import datetime
-from lexico import tokens
+from lexico import tokens, code
+from sintacticoOp import *
+from sintactico import *
 
-# Inicio Aporte Aaron Franco
+
+
+def p_all(p):
+    '''
+    all : simbolos_globales
+    '''
+
+
+def p_simbolo_global(p):
+    '''
+    simbolo_global : declaracion_asign
+                    | funcion
+    '''
+
+
+def p_simbolos_globales(p):
+    '''
+    simbolos_globales : simbolo_global
+                      | simbolo_global simbolos_globales
+                      | empty
+    '''
+
+
+def p_empty(p):
+    '''
+    empty :
+    '''
+
+
+def p_sentencia(p):
+    '''
+    sentencia : declaracion_var
+              | asignacion
+              | declaracion_asign
+              | operaciones PUNTOCOMA
+              | print
+              | estructura_control
+              | return
+              | continue
+              | break
+    '''
+
+
 def p_sentencias(p):
-    '''sentencias : asignacion
-                  | comparacion
-                  | operacion
-                  | impresion
-                  | funcion
-                  | estructuras
-                  | for
-                  | if
-                  | if-else
-                  | write
-                   '''
-#Fin Aporte Aaron Franco
+    '''
+    sentencias : sentencia
+                | sentencia sentencias
+                | empty
+    '''
 
 
+def p_numero(p):
+    '''
+    numero : INTEGER
+            | FLOAT
+    '''
 
 
+def p_bool(p):
+    '''
+    bool : TRUE
+          | FALSE
+    '''
 
-#OPERACION ASIGNACION
+
+def p_datos(p):
+    '''
+    datos : numero
+          | CADENA
+          | bool
+    '''
 
 
+def p_valor(p):
+    '''
+    valor : datos
+          | operaciones
+          | VARIABLE
+          | estructura_dato
+          | indexacion
+          | read
+          | ejecutar_funcion
+          | negativo
+          | casting
+    '''
 
-# Inicio Aporte Pedro Bajana
-def p_declaradores(p):
-  '''declaradores : INT
-                  | CONST
-                  | VAR
-                  | BOOL
-                  | FINAL
-                  | STRING'''
-# Fin Aporte Pedro Bajana
-# Inicio Aporte Aaron Franco
-def p_tipodato(p):
-  '''tipodato : INTEGER
-              | CADENA
-              | FLOAT
-              | VARIABLE
-              | valoresverdad
-              | negativo
-            '''
-# Fin Aporte Aaron Franco
-# Inicio Aporte  Pedro Bajana
+
 def p_negativo(p):
     '''
-    negativo : RESTA INTEGER
-              | RESTA FLOAT
+    negativo : RESTA numero
+              | RESTA VARIABLE
+              | RESTA indexacion
+              | RESTA ejecutar_funcion
+
     '''
-# Fin Aporte  Pedro Bajana
-# Inicio Aporte Aaron Franco
-def p_valoresverdad(p):
-  '''valoresverdad : TRUE
-                   | FALSE'''
-# Inicio Aporte Aaron Franco y Pedro Bajana
+
+
+def p_indexacion(p):
+    'indexacion : VARIABLE CORCH_IZQ valor CORCH_IZQ'
+
+
+def p_tipo_dato(p):
+    '''
+    tipo_dato : BOOL
+              | DOUBLE
+              | INT
+              | STRING
+              | VOID
+              | LIST
+              | SET
+              | MAP
+    '''
+
+
+def p_declaradores(p):
+    '''
+    declaradores : tipo_dato
+                  | FINAL
+                  | VAR
+    '''
+
+
+def p_declaracion_var(p):
+    '''
+    declaracion_var : declaradores VARIABLE PUNTOCOMA
+    '''
+
+
+def p_declaracion_asign(p):
+    '''
+    declaracion_asign : tipo_dato VARIABLE IGUAL valor PUNTOCOMA
+                      | FINAL VARIABLE IGUAL valor PUNTOCOMA
+                      | VAR VARIABLE IGUAL valor PUNTOCOMA
+                      | CONST VARIABLE IGUAL valor PUNTOCOMA
+    '''
+
+
 def p_asignacion(p):
-  '''asignacion : declaradores VARIABLE IGUAL tipodato PUNTOCOMA
-                  | declaradores VARIABLE IGUAL negativo PUNTOCOMA
-                  | BOOL VARIABLE IGUAL valoresverdad PUNTOCOMA'''
-# Fin Aporte Aaron Franco y Pedro Bajana
+    '''
+    asignacion : VARIABLE IGUAL valor PUNTOCOMA
+                | VARIABLE CORCH_IZQ valor CORCH_DER IGUAL valor PUNTOCOMA
+                | operacion_autoasig PUNTOCOMA
+                | declaracion_asign
+    '''
 
 
+def p_print(p):
+    'print : PRINT LPARENT valor RPARENT PUNTOCOMA'
 
 
-#OPERACION COMPARACION
+def p_cuerpo_estruct(p):
+    '''
+    cuerpo_estruct : LLAVEL sentencias LLAVER
+                    | sentencia
+    '''
 
 
-# Inicio Aporte  Pedro Bajana
-def p_comparadores(p):
-  '''comparadores : ES_IGUAL
-                  | NO_IGUAL
-                  | MENOR_QUE
-                  | MAYOR_QUE
-                  | MENOR_O_IGUAL
-                  | MAYOR_O_IGUAL'''
+#Regla semántica al esperar una operación lógica como condición de terminación
+def p_for(p):
+    '''
+    for : FOR LPARENT IGUAL operacion_log PUNTOCOMA operaciones RPARENT cuerpo_estruct
+        | FOR LPARENT VARIABLE IN VARIABLE RPARENT cuerpo_estruct
+        | FOR LPARENT tipo_dato VARIABLE IN VARIABLE RPARENT cuerpo_estruct
+        | FOR LPARENT VAR VARIABLE IN VARIABLE RPARENT cuerpo_estruct
+    '''
 
-def p_comparacion(p):
-  'comparacion : VARIABLE comparadores VARIABLE PUNTOCOMA'
-# Fin Aporte  Pedro Bajana
 
-
-
-
-
-
-
-#OPERACION ARITMETICA
-
-
-
-# Inicio Aporte Aaron Franco
-def p_datonumerico(p):
-    '''datonumerico : INTEGER
-                    | FLOAT
-                    | negativo'''
-
-def p_operador(p):
-    '''operador : MAS
-                | RESTA
-                | MULTIPL
-                | DIVISION'''
-
-def p_operacion(p):
-    'operacion : datonumerico operador datonumerico PUNTOCOMA'
-# Fin Aporte Aaron Franco
-
-
-
-
-
-
-
-#OPERACION IMPRESION
-
-# Inicio Aporte Pedro Bajana
-def p_impresion(p):
-  'impresion : PRINT LPARENT tipodato RPARENT PUNTOCOMA'
-# Inicio Aporte Pedro Bajana
-
-
-
-
-
-
-#OPERACION FUNCIONES
-
-# Inicio Aporte Pedro Bajana
-def p_declaracionfunciones(p):
-  '''declaracionfunciones : INT
-                          | DOUBLE
-                          | STRING
-                          | BOOL'''
-
-def p_funcion(p):
-    '''funcion : VOID VARIABLE LPARENT declaracionfunciones VARIABLE RPARENT LLAVEL LLAVER
-               | VOID VARIABLE LPARENT  VARIABLE RPARENT LLAVEL LLAVER
-               | VOID VARIABLE LPARENT RPARENT LLAVEL LLAVER
-               | declaracionfunciones VARIABLE LPARENT  RPARENT LLAVEL RETURN VARIABLE PUNTOCOMA LLAVER
-               | declaracionfunciones VARIABLE LPARENT  RPARENT LLAVEL RETURN tipodato PUNTOCOMA LLAVER'''
-# Fin Aporte Pedro Bajana
-
-
-
-
-
-
-
-
-
-#OPERACION ESTRUCTURAS
-
-
-
-# Inicio Aporte Pedro Bajana
-def p_declaracionestructura(p):
-  '''declaradoresestruras : CONST
-                           | VAR
-                           | FINAL'''
-
-def p_tipodatoestructura(p):
-  '''tipodatoestructura : INTEGER
-                        | CADENA
-                        | DOUBLE'''
-# Fin Aporte Pedro Bajana
-# Inicio Aporte Aaron Franco
-def p_elementos(p):
-  '''elementos : tipodatoestructura
-               | tipodatoestructura COMA elementos'''
-
-def p_elementosdiccionario(p):
-  '''elementosdiccionario : tipodatoestructura DOSPUNTOS tipodatoestructura
-                          | tipodatoestructura DOSPUNTOS tipodatoestructura COMA elementosdiccionario '''
-# Fin Aporte Aaron Franco
-# Inicio Aporte Pedro Bajana
-def p_estructuras(p):
-  '''estructuras : declaradoresestruras VARIABLE IGUAL CORCHETE_IZQ elementos CORCHETE_DER PUNTOCOMA
-                 | declaradoresestruras VARIABLE IGUAL CORCHETE_IZQ CORCHETE_DER PUNTOCOMA
-                 | declaradoresestruras VARIABLE IGUAL LLAVEL elementosdiccionario LLAVER PUNTOCOMA
-                 | declaradoresestruras VARIABLE IGUAL MENOR_QUE declaracionfunciones MAYOR_QUE LLAVEL elementos LLAVER PUNTOCOMA'''
-# Fin Aporte Pedro Bajana
-
-
-
-
-
-
-
-
-#OPERACION FOR
-
-# Inicio Aporte Fabrizzio Ontaneda
-def p_declaracionesfor(p):
-  '''declaracionesfor : VAR
-                      | INT
-                      | VARIABLE'''
-
-def p_estructura_for(p):
-  '''for : FOR LPARENT declaracionesfor VARIABLE IN VARIABLE RPARENT LLAVEL LLAVER
-          | FOR LPARENT declaracionesfor VARIABLE IGUAL INTEGER PUNTOCOMA VARIABLE comparadores INTEGER PUNTOCOMA VARIABLE operador operador RPARENT LLAVEL LLAVER'''
-# Fin Aporte Fabrizzio Ontaneda
-
-
-
-
-
-
-
-
-
-#OPERACION IF
-
-
-# Inicio Aporte Fabrizzio Ontaneda
+#Regla semántica al esperar una operación lógica como condición
 def p_if(p):
-  '''if : IF LPARENT VARIABLE RPARENT LLAVEL LLAVER
-        | IF LPARENT TRUE RPARENT LLAVEL LLAVER
-        | IF LPARENT FALSE RPARENT LLAVEL LLAVER
-        | IF LPARENT VARIABLE comparadores VARIABLE RPARENT LLAVEL LLAVER
-        | IF LPARENT datonumerico comparadores datonumerico RPARENT LLAVEL LLAVER'''
-# Fin Aporte Fabrizzio Ontaneda
+    '''
+    if : IF LPARENT operacion_log RPARENT cuerpo_estruct
+    '''
 
 
-
-
-
-#OPERACION IF ELSE
-
-
-# Inicio Aporte Fabrizzio Ontaneda
+#Regla semántica al esperar una operación lógica como condición
 def p_if_else(p):
-  '''if-else : if ELSE LLAVEL LLAVER'''
-# Fin Aporte Fabrizzio Ontaneda
+    '''
+    if_else : IF LPARENT operacion_log RPARENT cuerpo_estruct ELSE cuerpo_estruct
+    '''
+
+
+#Regla semántica al esperar una operación lógica como condición
+def p_while(p):
+    '''
+    while : WHILE LPARENT operacion_log RPARENT cuerpo_estruct
+    '''
+
+
+def p_estructura_control(p):
+    '''
+    estructura_control : if
+                        | if_else
+                        | while
+                        | for
+    '''
+
+
+def p_break(p):
+    'break : BREAK PUNTOCOMA'
+
+
+def p_continue(p):
+    'continue : CONTINUE PUNTOCOMA'
+
+
+def p_read(p):
+    '''
+    read : STDIN PUNTO READLINESYNC LPARENT RPARENT
+    '''
 
 
 
 
-
-#OPERACION WRITE
-
-# Inicio Aporte Fabrizzio Ontaneda
-def p_write(p):
-  '''write : STDOUT PUNTO WRITE LPARENT tipodato RPARENT PUNTOCOMA'''   
-# Fin Aporte Fabrizzio Ontaneda
+def p_return(p):
+    '''
+    return : RETURN valor PUNTOCOMA
+            | RETURN PUNTOCOMA
+    '''
 
 
+def p_arg_funcion(p):
+    '''
+    arg_funcion : VARIABLE
+                | VAR VARIABLE
+                | tipo_dato VARIABLE
+    '''
 
 
+def p_args_funcion(p):
+    '''
+    args_funcion : arg_funcion COMA args_funcion
+                  | arg_funcion
+                  | empty
+    '''
 
 
+def p_declarar_funcion(p):
+    '''
+    funcion : tipo_dato VARIABLE LPARENT args_funcion RPARENT LLAVEL sentencias LLAVER
+    '''
 
 
+def p_ejecutar_funcion(p):
+    '''
+    ejecutar_funcion : VARIABLE LPARENT valores RPARENT
+                      | VARIABLE LPARENT RPARENT
+    '''
 
 
-def p_error(p):
-  if p:
-    print(
-      f"Error de sintaxis - Token: {p.type}, Línea: {p.lineno}, Col: {p.lexpos}"
-    )
-    parser.errok()
-  else:
-    print("Error de sintaxis Fin de Linea")
+def p_casting(p):
+    'casting : LPARENT valor AS tipo_dato RPARENT'
 
 
-
-
-#Crear Log
-
-file1 = open("log.txt","a") 
-date_time = datetime.datetime.now()
-
-file1.write("Prueba Realizada el dia: "+ date_time.strftime("%d/%m/%Y")+ " a las: "+ date_time.strftime("%X")+"\n") 
-
- 
-# Build the parser
 parser = sintactico.yacc()
 
-file = open('./input.dart', 'r')
-content = file.read()
-
-lines = 0
-for item in content.splitlines():
-    lines += 1
-    if item:
-        gram = parser.parse(item)
-        if gram is None:
-            print(f"Linea: {str(lines)} | Info: No hay errores!")
-            file1.write(f"Linea: {str(lines)} | Info: No hay errores! \n")
-        else:
-            print(f"Linea: {str(lines)} | Info: {str(gram)}")
-            file1.write(f"Linea: {str(lines)} | Info: {str(gram)}")
-
-
-file.close() 
 
 
 
@@ -301,7 +265,6 @@ file.close()
 
 
 
-'''
 def validaRegla(s):
   result = parser.parse(s)
   print(result)
@@ -313,7 +276,7 @@ while True:
     break
   if not s: continue
   validaRegla(s)
-'''
+
 
 
 

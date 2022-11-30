@@ -1,5 +1,5 @@
 import ply.lex as lex
-
+code =''
 # Inicio de palabras reservadas
 
 reserved = {
@@ -12,6 +12,7 @@ reserved = {
 "for":"FOR",
 "main":"MAIN",
 "double":'DOUBLE',
+
 #Fin Aporte Aaron Franco
 
 #Aporte Pedro Bajana
@@ -21,6 +22,12 @@ reserved = {
 'bool':'BOOL',
 'void':'VOID',
 'stdin':'STDIN',
+'in':'IN',
+'as':'AS',
+'break':'BREAK',
+'continue':'CONTINUE',
+'join':'JOIN',
+'while':'WHILE',
 
 #Fin Aporte Pedro Bajana
 
@@ -36,11 +43,25 @@ reserved = {
 'final':'FINAL',
 'const':'CONST',
 'stdout':'STDOUT',
-'in':'IN'
+'in':'IN',
+'map':'MAP',
+'set':'SET'
 #Fin Aporte Fabrizzio Ontaneda
 }
 
+metodos_estructuras = {
+    "List": ['join', 'indexOf', 'add', 'length'],
+    "Set": ['contains', 'difference', 'union'],
+    "Map": ['remove', 'clear', 'containsKey']
+}
 
+contador = 0
+
+metodos = {}
+
+for list_func in metodos_estructuras.values():
+    for func in list_func:
+        metodos[func] = func.upper()
 # Definicion de Tokens
 tokens = [
 #Inicio Aporte Aaron Franco
@@ -77,9 +98,11 @@ tokens = [
 'MAYOR_O_IGUAL',
 'SALTO_LINEA',
 'TABULACION',
-'CORCHETE_IZQ',
-'CORCHETE_DER',
+'CORCH_IZQ',
+'CORCH_DER',
 'COMA',
+"AUTOINCREMENTO", "AUTODECREMENTO"
+
 
 #Fin APorte Fabrizzio Ontaneda
 ]+list(reserved.values())
@@ -102,6 +125,8 @@ t_PUNTOCOMA=r';'
 t_PUNTO=r'\.'
 t_INTEGER = r'([1-9]\d+|\d)'
 t_DOSPUNTOS=r':'
+t_AUTOINCREMENTO = r'\+\+'
+t_AUTODECREMENTO = r'\-\-'
 #Fin Aporte Pedro Bajana
 
 #Inicio Aporte Fabrizzio Ontaneda
@@ -116,8 +141,8 @@ t_OR = r'\|\|'
 t_SALTO_LINEA=r'/n'
 t_NEGACION=r'!'
 t_TABULACION=r'/t'
-t_CORCHETE_IZQ= r'\['
-t_CORCHETE_DER= r'\]'
+t_CORCH_IZQ= r'\['
+t_CORCH_DER= r'\]'
 t_COMA=r','
 
 

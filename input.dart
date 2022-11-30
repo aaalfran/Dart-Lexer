@@ -83,7 +83,7 @@ if (precio  == 500) {
 }
 
 
-Algoritmo de Fabrizzio
+//Algoritmo de Fabrizzio
 List<int> edades=[10,20,30,18,15,20,8];
 for(int edad in edades){
     if (edad>=18){
@@ -92,3 +92,5 @@ for(int edad in edades){
        print("Es menor de edad");
     }
 }
+
+
