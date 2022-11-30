@@ -271,7 +271,8 @@ parser = sintactico.yacc()
 def validaRegla(s):
   result = parser.parse(s)
   print(result)
-
+  
+'''
 while True:
   try:
     s = input('calc > ')
@@ -279,7 +280,7 @@ while True:
     break
   if not s: continue
   validaRegla(s)
-
+'''
 
 
 

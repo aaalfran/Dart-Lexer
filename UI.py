@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import lexico as lex
+import sintaxis as sin
 import sys
 
 class Ui_MainWindow(object):
@@ -84,8 +85,20 @@ class Ui_MainWindow(object):
     
     # Funcion para realizar el analisis sintactico
     def syntax(self):
+        self.textBrowser_2.setText("")
         texto = self.textEdit.toPlainText()
-        self.textBrowser_2.setText(texto)
+        #sin.validaRegla(texto)
+
+        lines = 0
+        for item in texto.splitlines():
+         lines += 1
+        if item:
+            gram = sin.validaRegla(texto)
+            #print(gram)
+            if gram is None:
+                self.textBrowser_2.insertPlainText("Info: No hay errores! \n")
+            else:
+                self.textBrowser_2.insertPlainText(f"Linea: {str(lines)} | Info: {str(gram)} \n")
 
     # Funcion para realizar el analisis lexico
     def lexer(self):
@@ -98,6 +111,7 @@ class Ui_MainWindow(object):
     #Funcion para limpiar caja de texto
     def clear(self):
         self.textEdit.setText("")
+        self.textBrowser_2.setText("")
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
